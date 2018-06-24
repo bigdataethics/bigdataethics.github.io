@@ -6,10 +6,19 @@
     <description>Recent content on Big Data Ethics</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 28 Mar 2018 09:29:21 -0500</lastBuildDate>
+    <lastBuildDate>Fri, 15 Jun 2018 23:38:36 -0500</lastBuildDate>
     
 	<atom:link href="https://bigdataethics.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Introduction to Identifying News Article Sentiment</title>
+      <link>https://bigdataethics.github.io/tutorials/newsarticlesentiment/</link>
+      <pubDate>Fri, 15 Jun 2018 23:38:36 -0500</pubDate>
+      
+      <guid>https://bigdataethics.github.io/tutorials/newsarticlesentiment/</guid>
+      <description>Sentiment Analysis Identifying the sentiment of a news article or tweet can be useful in many ways. For example, sentiment of news about stock or the economy might correlate to movements in the stock market. Or sentiment of tweets of an user might correlate to the mood of the user. These in turn can be used for personalizing recommendations or for predicting market sentiment. In this brief tutorial we will look at how news article sentiment can be guaged.</description>
+    </item>
     
     <item>
       <title>Privacy in a Connected World</title>

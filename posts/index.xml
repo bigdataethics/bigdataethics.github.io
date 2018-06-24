@@ -6,28 +6,9 @@
     <description>Recent content in Posts on Big Data Ethics</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 28 Mar 2018 09:29:21 -0500</lastBuildDate>
     
 	<atom:link href="https://bigdataethics.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>Privacy in a Connected World</title>
-      <link>https://bigdataethics.github.io/posts/blog_180328/</link>
-      <pubDate>Wed, 28 Mar 2018 09:29:21 -0500</pubDate>
-      
-      <guid>https://bigdataethics.github.io/posts/blog_180328/</guid>
-      <description>Facebook is in the news for all the wrong reasons these days1. And at the center of their troubles is the often discussed issue of privacy. Digital technology has evolved from being merely computing machines to connected machines. This connectednnes extends to people drawing them into discovering new ways of &amp;ldquo;staying in touch&amp;rdquo;. Face to face communication has given way in most part to online communication. Sharing of moments like photo albums and retelling of stories which were done in a specific place with real people around are now done in a virtual space with multiple copies floating around, posted and shared.</description>
-    </item>
-    
-    <item>
-      <title>Tech and Evolution</title>
-      <link>https://bigdataethics.github.io/posts/welcome/</link>
-      <pubDate>Fri, 27 Oct 2017 23:29:21 -0500</pubDate>
-      
-      <guid>https://bigdataethics.github.io/posts/welcome/</guid>
-      <description>Technology is directing the evolution of human beings. Digital devices like smartphones have become an extension of the human body. People rely a lot on such tools not just for information but as a supplement to their memory and even intelligence. Could such dependency result in decreased use of the brain and thereby result in lowered brain &amp;ldquo;capacity&amp;rdquo; over generations? Of course, there are those involved in making this technology possible?</description>
-    </item>
     
   </channel>
 </rss>
