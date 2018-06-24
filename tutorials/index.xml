@@ -6,9 +6,40 @@
     <description>Recent content in Tutorials on Big Data Ethics</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
+    <lastBuildDate>Sat, 28 Oct 2017 09:16:42 -0500</lastBuildDate>
     
 	<atom:link href="https://bigdataethics.github.io/tutorials/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Handling data in JSON and CSV formats</title>
+      <link>https://bigdataethics.github.io/tutorials/twitter-python-3/</link>
+      <pubDate>Sat, 28 Oct 2017 09:16:42 -0500</pubDate>
+      
+      <guid>https://bigdataethics.github.io/tutorials/twitter-python-3/</guid>
+      <description>Python includes packages for handling data in JSON and CSV formats. JSON stands for JavaScript Object Notation format. It is basically a key-value pair store. CSV stands for Comma Separated Variables. It is a list of data values separated by comma (or some other delimiter).
+If you open the tweets.txt file saved in the previous session, you will notice that each line is in the JSON format. Each tweet is enclosed in braces {}, and within the braces are key:value pairs separated by commas.</description>
+    </item>
+    
+    <item>
+      <title>Collecting Streaming Twitter Data</title>
+      <link>https://bigdataethics.github.io/tutorials/twitter-python-2/</link>
+      <pubDate>Sat, 28 Oct 2017 09:15:27 -0500</pubDate>
+      
+      <guid>https://bigdataethics.github.io/tutorials/twitter-python-2/</guid>
+      <description>Twitter no longer provides free access to all streaming tweets (Twitter Firehose). However, it does allow access to &amp;ldquo;some&amp;rdquo; streaming tweets in real time based on filters. In the code below all tweets having &amp;lsquo;Las Vegas&amp;rsquo; in them will be filtered. [More: http://tweepy.readthedocs.io/en/v3.5.0/streaming_how_to.html]
+One needs to be aware of the rate limits imposed by Twitter while accessing their feeds. It is always advisable to include pauses in code execution to ensure that the rate limits are not violated OR include error handling routines that can trap rate violation errors.</description>
+    </item>
+    
+    <item>
+      <title>Introduction to Reading Twitter Data in Python</title>
+      <link>https://bigdataethics.github.io/tutorials/twitter-python-1/</link>
+      <pubDate>Fri, 27 Oct 2017 23:38:36 -0500</pubDate>
+      
+      <guid>https://bigdataethics.github.io/tutorials/twitter-python-1/</guid>
+      <description>Social Media Analysis Social media has become the go-to place for information and opinions. Social media can be mined to gauge sentiment, analyze opinion, identity interests, locate concerns, and so on. Facebook, Pinterest, Instagram, Twitter, Google+ are some social media platforms. Among them, Twitter data is public and can be mined relatively easily.
+First of all you need to obtain access codes from Twitter to be able to mine Twitter data.</description>
+    </item>
     
   </channel>
 </rss>
