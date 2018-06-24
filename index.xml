@@ -6,9 +6,67 @@
     <description>Recent content on Big Data Ethics</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
+    <lastBuildDate>Wed, 28 Mar 2018 09:29:21 -0500</lastBuildDate>
     
 	<atom:link href="https://bigdataethics.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Privacy in a Connected World</title>
+      <link>https://bigdataethics.github.io/posts/blog_180328/</link>
+      <pubDate>Wed, 28 Mar 2018 09:29:21 -0500</pubDate>
+      
+      <guid>https://bigdataethics.github.io/posts/blog_180328/</guid>
+      <description>Facebook is in the news for all the wrong reasons these days1. And at the center of their troubles is the often discussed issue of privacy. Digital technology has evolved from being merely computing machines to connected machines. This connectednnes extends to people drawing them into discovering new ways of &amp;ldquo;staying in touch&amp;rdquo;. Face to face communication has given way in most part to online communication. Sharing of moments like photo albums and retelling of stories which were done in a specific place with real people around are now done in a virtual space with multiple copies floating around, posted and shared.</description>
+    </item>
+    
+    <item>
+      <title>Handling data in JSON and CSV formats</title>
+      <link>https://bigdataethics.github.io/tutorials/twitter-python-3/</link>
+      <pubDate>Sat, 28 Oct 2017 09:16:42 -0500</pubDate>
+      
+      <guid>https://bigdataethics.github.io/tutorials/twitter-python-3/</guid>
+      <description>Python includes packages for handling data in JSON and CSV formats. JSON stands for JavaScript Object Notation format. It is basically a key-value pair store. CSV stands for Comma Separated Variables. It is a list of data values separated by comma (or some other delimiter).
+If you open the tweets.txt file saved in the previous session, you will notice that each line is in the JSON format. Each tweet is enclosed in braces {}, and within the braces are key:value pairs separated by commas.</description>
+    </item>
+    
+    <item>
+      <title>Collecting Streaming Twitter Data</title>
+      <link>https://bigdataethics.github.io/tutorials/twitter-python-2/</link>
+      <pubDate>Sat, 28 Oct 2017 09:15:27 -0500</pubDate>
+      
+      <guid>https://bigdataethics.github.io/tutorials/twitter-python-2/</guid>
+      <description>Twitter no longer provides free access to all streaming tweets (Twitter Firehose). However, it does allow access to &amp;ldquo;some&amp;rdquo; streaming tweets in real time based on filters. In the code below all tweets having &amp;lsquo;Las Vegas&amp;rsquo; in them will be filtered. [More: http://tweepy.readthedocs.io/en/v3.5.0/streaming_how_to.html]
+One needs to be aware of the rate limits imposed by Twitter while accessing their feeds. It is always advisable to include pauses in code execution to ensure that the rate limits are not violated OR include error handling routines that can trap rate violation errors.</description>
+    </item>
+    
+    <item>
+      <title>Introduction to Reading Twitter Data in Python</title>
+      <link>https://bigdataethics.github.io/tutorials/twitter-python-1/</link>
+      <pubDate>Fri, 27 Oct 2017 23:38:36 -0500</pubDate>
+      
+      <guid>https://bigdataethics.github.io/tutorials/twitter-python-1/</guid>
+      <description>Social Media Analysis Social media has become the go-to place for information and opinions. Social media can be mined to gauge sentiment, analyze opinion, identity interests, locate concerns, and so on. Facebook, Pinterest, Instagram, Twitter, Google+ are some social media platforms. Among them, Twitter data is public and can be mined relatively easily.
+First of all you need to obtain access codes from Twitter to be able to mine Twitter data.</description>
+    </item>
+    
+    <item>
+      <title>Tech and Evolution</title>
+      <link>https://bigdataethics.github.io/posts/welcome/</link>
+      <pubDate>Fri, 27 Oct 2017 23:29:21 -0500</pubDate>
+      
+      <guid>https://bigdataethics.github.io/posts/welcome/</guid>
+      <description>Technology is directing the evolution of human beings. Digital devices like smartphones have become an extension of the human body. People rely a lot on such tools not just for information but as a supplement to their memory and even intelligence. Could such dependency result in decreased use of the brain and thereby result in lowered brain &amp;ldquo;capacity&amp;rdquo; over generations? Of course, there are those involved in making this technology possible?</description>
+    </item>
+    
+    <item>
+      <title>About Me</title>
+      <link>https://bigdataethics.github.io/about/</link>
+      <pubDate>Wed, 25 Oct 2017 09:51:51 -0400</pubDate>
+      
+      <guid>https://bigdataethics.github.io/about/</guid>
+      <description>I am Joseph Coelho, a graduate student in the Department of Mathematics, Statistics and Computer Science at Marquette University, Milwaukee, WI. My interests are in Database Systems, Data Science, Machine Learning, and the Ethics of Machine Learning &amp;amp; Big Data Applications.</description>
+    </item>
     
   </channel>
 </rss>

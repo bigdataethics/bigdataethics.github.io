@@ -4,16 +4,17 @@
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
     <meta name="description" content="">
-    <meta property="og:title" content="Big Data Ethics">
+    <meta property="og:title" content="Collecting Streaming Twitter Data">
     
-    <meta property="og:type" content="website">
+    <meta property="og:type" content="article">
+    <meta property="article:published_time" content="2017-10-28">
     
     <meta property="og:description" content="">
-    <meta property="og:url" content="https://bigdataethics.github.io/">
+    <meta property="og:url" content="https://bigdataethics.github.io/tutorials/twitter-python-2/">
     <meta property="og:site_name" content="Big Data Ethics">
     
     <meta name="generator" content="Hugo 0.42.1" />
-    <title>Big Data Ethics &middot; Big Data Ethics</title>
+    <title>Collecting Streaming Twitter Data &middot; Big Data Ethics</title>
     
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     
@@ -100,19 +101,85 @@
 			<div class="row">
 				<div id="post" class="col-sm-offset-1 col-sm-10 col-md-10 col-lg-8">
 
-<header>
-	
-	
-		<h1>What I'm Thinking</h1>
-	
-</header>
+<main>
+	<header>
+		<h1>Collecting Streaming Twitter Data</h1>
+	</header>
 
+	<article>
+		
 
+<p>Twitter no longer provides free access to all streaming tweets (Twitter Firehose). However, it does allow access to &ldquo;some&rdquo; streaming tweets in real time based on filters. In the code below all tweets having &lsquo;Las Vegas&rsquo; in them will be filtered. [More: <a href="http://tweepy.readthedocs.io/en/v3.5.0/streaming_how_to.html">http://tweepy.readthedocs.io/en/v3.5.0/streaming_how_to.html</a>]</p>
 
-<div class="text-center center-block">
-	
+<p>One needs to be aware of the rate limits imposed by Twitter while accessing their feeds. It is always advisable to include pauses in code execution to ensure that the rate limits are not violated OR include error handling routines that can trap rate violation errors. (see Tweepy documentation at the above link)</p>
 
+<p>Note that in the code below only the tweet text will be printed (and not the entire tweet). To print the entire tweet you will use \em{print(jdata)} instead of \em{print(jdata[&lsquo;text&rsquo;])}. In addition, you might want to change the filter to suit the kind of tweets you want to collect.</p>
+
+<pre><code>#Filename: tstreaming.py
+
+import tweepy
+import json
+
+access_token = ''
+access_token_secret = ''
+consumer_key = ''
+consumer_secret = ''
+
+class StdOutListener(tweepy.StreamListener) :
+    def on_data(self, data) :
+        try:
+            jdata = json.loads(data)
+            print(jdata['text'])
+        except:
+            pass
+        return True
+    def on_error(selfself, status):
+        print(status)
+
+if __name__ == &quot;__main__&quot; :
+    listen = StdOutListener()
+    auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
+    auth.set_access_token(access_token, access_token_secret)
+    stream = tweepy.Stream(auth, listen)
+    stream.filter(track=['Las Vegas'])
+</code></pre>
+
+<h1 id="saving-collected-data-to-disk">Saving collected data to disk</h1>
+
+<p>The output of the above Python program (<code>tstreaming.py</code>) can be saved to disk using the OS pipe filters. The following command executed at the OS command prompt will create a <code>tweets.txt</code> file with the streaming tweets. To terminate program execution one could use <code>Ctrl+C</code>. Let the above program execute for at least an hour so that a sufficient number of tweets are collected. (Note: The above program will execute without terminating. To terminate, press Ctrl+C.)</p>
+
+<pre><code>    python tstreaming.py &gt; tweets.txt
+</code></pre>
+
+	</article>
+</main>
+
+<div id="bottom-nav" class="text-center center-block">
+	<a href=" https://bigdataethics.github.io/" class="btn btn-default"><i class="fa fa-home"></i> Home</a>
 </div>
+
+
+  <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "joecoelhosj-github-io" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
 
 						</div>
 					</div>
