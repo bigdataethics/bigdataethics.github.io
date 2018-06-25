@@ -6,10 +6,21 @@
     <description>Recent content on Big Data Ethics</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 15 Jun 2018 23:38:36 -0500</lastBuildDate>
+    <lastBuildDate>Sun, 24 Jun 2018 16:59:11 -0500</lastBuildDate>
     
 	<atom:link href="https://bigdataethics.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Blog using Hugo on Github</title>
+      <link>https://bigdataethics.github.io/post/hugoblog-github/</link>
+      <pubDate>Sun, 24 Jun 2018 16:59:11 -0500</pubDate>
+      
+      <guid>https://bigdataethics.github.io/post/hugoblog-github/</guid>
+      <description>How to Create a Personal Blog on Github using Hugo Github is a popular free static hosting service for personal and project pages. Hugo is a framework for building websites. More information about Hugo can be got at https://gohugo.io/hosting-and-deployment/hosting-on-github/
+The Hugo website also has instructions for creating a personal website on Github. Instructions can be got here https://gohugo.io/hosting-and-deployment/hosting-on-github/
+Step by Step * Download and intall Git (https://gitforwindows.org/) * Sign up for a Github account * Create a &amp;lt;BLOG&amp;gt; repository on Github.</description>
+    </item>
     
     <item>
       <title>Introduction to Identifying News Article Sentiment</title>
@@ -22,10 +33,10 @@
     
     <item>
       <title>Privacy in a Connected World</title>
-      <link>https://bigdataethics.github.io/post/blog_180328/</link>
+      <link>https://bigdataethics.github.io/post/facebook/</link>
       <pubDate>Wed, 28 Mar 2018 09:29:21 -0500</pubDate>
       
-      <guid>https://bigdataethics.github.io/post/blog_180328/</guid>
+      <guid>https://bigdataethics.github.io/post/facebook/</guid>
       <description>Facebook is in the news for all the wrong reasons these days1. And at the center of their troubles is the often discussed issue of privacy. Digital technology has evolved from being merely computing machines to connected machines. This connectednnes extends to people drawing them into discovering new ways of &amp;ldquo;staying in touch&amp;rdquo;. Face to face communication has given way in most part to online communication. Sharing of moments like photo albums and retelling of stories which were done in a specific place with real people around are now done in a virtual space with multiple copies floating around, posted and shared.</description>
     </item>
     
