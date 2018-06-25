@@ -128,7 +128,9 @@
 
 <li><p>Substitute &lt;BLOG&gt; and &lt;USERNAME&gt; with proper literals in all the commands.</p></li>
 
-<li><p>Instructions for downloading and installing Hugo can be found at <a href="https://gohugo.io/getting-started/installing/#windows">https://gohugo.io/getting-started/installing/#windows</a></p></li>
+<li><p>Download Hugo. Instructions for downloading and installing Hugo can be found at <a href="https://gohugo.io/getting-started/installing/#windows">https://gohugo.io/getting-started/installing/#windows</a></p></li>
+
+<li><p>Add the &lsquo;Hugo\bin&rsquo; folder to the PATH.</p></li>
 </ul>
 
 <p>Directory Structure:</p>
@@ -176,12 +178,12 @@ themesdir = &quot;./themes/&quot;
 <pre><code>git remote add origin &lt;HTTPS BLOG clone-link&gt;
 </code></pre></li>
 
-<li><p>Mark the &lsquo;public&rsquo; folder as not to be updated in the <BLOG> repository by giving the following command at the prompt.</p>
+<li><p>Mark the &lsquo;public&rsquo; folder as not to be updated in the <BLOG> repository by giving the following command at the prompt which will add the &lsquo;public&rsquo; folder to the .gitignore file.</p>
 
 <pre><code>echo &quot;public/&quot; &gt; .gitignore
 </code></pre></li>
 
-<li><p>Clone a theme for the blog. (I am using the hugo-geo theme for this example)</p>
+<li><p>Clone a theme for the blog. (I am using the hugo-geo theme for this example). This command will clone the hugo-geo theme into the &lsquo;themes\hugo-geo&rsquo; folder.</p>
 
 <pre><code>git clone https://github.com/alexurquhart/hugo-geo.git themes\hugo-geo
 </code></pre></li>
@@ -212,12 +214,15 @@ Welcome to this test site.
 <h3 id="step-4-creating-posts-or-tutorials">Step 4: Creating Posts or Tutorials</h3>
 
 <ul>
-<li>You can use Hugo to create blank posts or tutorials which can then be edited
+<li>You can use Hugo to create blank posts or tutorials which can then be edited. Example, to create a new post with filename &lsquo;FirstPost.md&rsquo;
 <code>
-hugo new post/\&lt;filename\&gt;.md
-hugo new tutorial/\&lt;filename\&gt;.md
+hugo new post/FirstPost.md
 </code>
-The files will be created in the &lsquo;post&rsquo; / &lsquo;tutorial&rsquo; folders within the &lsquo;content&rsquo; folder.</li>
+And to create a tutorial file with filename &lsquo;FirstTutorial.md&rsquo;
+<code>
+hugo new tutorial/FirstTutorial.md
+</code>
+The files will be created in the &lsquo;post&rsquo; or &lsquo;tutorial&rsquo; folders within the &lsquo;content&rsquo; folder.</li>
 </ul>
 
 <h3 id="step-5-rendering-the-pages-and-updating-github-repositories">Step 5: Rendering the Pages and Updating Github repositories.</h3>
@@ -229,7 +234,7 @@ cd &lt;BLOG&gt;
 git add .
 git commit -m &quot;Update blog&quot;
 git push -u origin master
-..\bin\hugo
+hugo
 cd public
 git add .
 git commit -m &quot;Update rendered site&quot;
