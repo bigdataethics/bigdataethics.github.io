@@ -115,7 +115,7 @@
 
 <p>The Hugo website also has instructions for creating a personal website on Github. Instructions can be got here <a href="https://gohugo.io/hosting-and-deployment/hosting-on-github/">https://gohugo.io/hosting-and-deployment/hosting-on-github/</a></p>
 
-<h3 id="step-by-step-download-resources-and-setup-directories">Step by Step: Download Resources and Setup Directories</h3>
+<h3 id="step-1-download-resources-and-setup-directories">Step 1: Download Resources and Setup Directories</h3>
 
 <ul>
 <li><p>Download and intall Git (<a href="https://gitforwindows.org/">https://gitforwindows.org/</a>)</p></li>
@@ -152,18 +152,30 @@
 <li><p>Change directory to &lt;BLOG&gt; directory</p></li>
 
 <li><p>Edit the config.toml file so that
-    baseurl = &ldquo;https://&lt;USERNAME&gt;.github.io/&rdquo;</p></li>
+    baseurl = &ldquo;https://&lt;USERNAME&gt;.github.io/&rdquo;
+theme = &ldquo;hugo-geo&rdquo;
+themesdir = &ldquo;./themes/&rdquo;</p></li>
 
 <li><p>Edit other parameters as necessary</p></li>
+
+<li><p>Initialize the folder for Git use</p>
+
+<pre><code>git init
+</code></pre></li>
 </ul>
 
-<h3 id="step-by-step-download-theme-and-clone-repositories">Step by Step: Download Theme and Clone Repositories</h3>
+<h3 id="step-2-download-theme-and-clone-repositories">Step 2: Download Theme and Clone Repositories</h3>
 
 <ul>
-<li>Clone a theme for the blog. (I am using the hugo-geo theme for this example)</li>
+<li><p>Set the &lt;BLOG&gt; repository as origin. (The BLOG clone-link is generally <a href="https://github.com/">https://github.com/</a><USERNAME>/<BLOG>.git)</p>
+
+<pre><code>git remote add origin &lt;HTTPS BLOG clone-link&gt;
+</code></pre></li>
+
+<li><p>Clone a theme for the blog. (I am using the hugo-geo theme for this example)</p></li>
 </ul>
 
-<pre><code>git clone https://github.com/alexurquhart/hugo-geo.git .\themes\hugo-geo
+<pre><code>git clone https://github.com/alexurquhart/hugo-geo.git themes\hugo-geo
 </code></pre>
 
 <ul>
@@ -178,8 +190,50 @@ title = &ldquo;About&rdquo;
 
 <p>Welcome to this test site.</p></li>
 
-<li><p>Map the &lt;USERNAME&gt;</p></li>
+<li><p>Map the &lt;USERNAME&gt;.github.io repository to the &lsquo;public&rsquo; folder which contains the rendered pages. The clone-link will be <a href="https://github.com/">https://github.com/</a><USERNAME\>/&lt;USERNAME&gt;.github.io.git</p>
+
+<pre><code>git submodule add &lt;HTTPS clone-link&gt; public
+</code></pre></li>
 </ul>
+
+<h3 id="step-3-configure-the-theme">Step 3: Configure the Theme</h3>
+
+<ul>
+<li>You will find information about configuring the theme at <a href="https://github.com/alexurquhart/hugo-geo">https://github.com/alexurquhart/hugo-geo</a></li>
+</ul>
+
+<h3 id="step-4-creating-posts-or-tutorials">Step 4: Creating Posts or Tutorials</h3>
+
+<ul>
+<li>You can call Hugo to create blank posts or tutorials which can then be edited
+```
+hugo new post/<filename>.md</li>
+</ul>
+
+<pre><code></code></pre>
+
+<p>hugo new tutorial/<filename>.md</p>
+
+<pre><code>The files will be created in the 'post' / 'tutorial' folders within the 'content' folder.
+
+### Step 5: Rendering the Pages and Updating Github repositories.
+
+* The following commands may be saved in a batch file (.BAT) and run every time new posts have been written. (This batch file is to be saved in the 'Hugo\Sites' directory.)
+</code></pre>
+
+<p>cd <BLOG>
+git add .
+git commit -m &ldquo;Update blog&rdquo;
+git push -u origin master
+..\bin\hugo
+cd public
+git add .
+git commit -m &ldquo;Update rendered site&rdquo;
+git push -u origin master
+cd ..
+```</p>
+
+<p>If you encounter errors especially when pushing content first time, change the flag for the &lsquo;git push&rsquo; commands from -u to -f which will force a push. You should not have a problem unless the files have been modified in the Github repository directly online, in which case you will have to use the &lsquo;git pull&rsquo; command to update the files stored locally.</p>
 
 	</article>
 </main>
