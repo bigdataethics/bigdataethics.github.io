@@ -155,7 +155,7 @@
 
 <li><p>Edit the config.toml file so that</p>
 
-<pre><code>		baseurl = &quot;https://\&lt;USERNAME\&gt;.github.io/&quot;
+<pre><code>baseurl = &quot;https://\&lt;USERNAME\&gt;.github.io/&quot;
 theme = &quot;hugo-geo&quot;
 themesdir = &quot;./themes/&quot;
 </code></pre></li>
@@ -181,13 +181,11 @@ themesdir = &quot;./themes/&quot;
 <pre><code>echo &quot;public/&quot; &gt; .gitignore
 </code></pre></li>
 
-<li><p>Clone a theme for the blog. (I am using the hugo-geo theme for this example)</p></li>
-</ul>
+<li><p>Clone a theme for the blog. (I am using the hugo-geo theme for this example)</p>
 
 <pre><code>git clone https://github.com/alexurquhart/hugo-geo.git themes\hugo-geo
-</code></pre>
+</code></pre></li>
 
-<ul>
 <li><p>In the &lt;BLOG&gt;/content folder create a file named about.md with the following content:</p>
 
 <pre><code>+++
@@ -214,16 +212,13 @@ Welcome to this test site.
 <h3 id="step-4-creating-posts-or-tutorials">Step 4: Creating Posts or Tutorials</h3>
 
 <ul>
-<li>You can call Hugo to create blank posts or tutorials which can then be edited
+<li>You can use Hugo to create blank posts or tutorials which can then be edited
 <code>
 hugo new post/\&lt;filename\&gt;.md
-</code></li>
+hugo new tutorial/\&lt;filename\&gt;.md
+</code>
+The files will be created in the &lsquo;post&rsquo; / &lsquo;tutorial&rsquo; folders within the &lsquo;content&rsquo; folder.</li>
 </ul>
-
-<pre><code>hugo new tutorial/\&lt;filename\&gt;.md
-</code></pre>
-
-<p>The files will be created in the &lsquo;post&rsquo; / &lsquo;tutorial&rsquo; folders within the &lsquo;content&rsquo; folder.</p>
 
 <h3 id="step-5-rendering-the-pages-and-updating-github-repositories">Step 5: Rendering the Pages and Updating Github repositories.</h3>
 
