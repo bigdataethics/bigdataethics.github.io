@@ -113,18 +113,20 @@
 
 <p>Github is a popular free static hosting service for personal and project pages. Hugo is a framework for building websites. More information about Hugo can be got at <a href="https://gohugo.io/hosting-and-deployment/hosting-on-github/">https://gohugo.io/hosting-and-deployment/hosting-on-github/</a></p>
 
-<p>The Hugo website also has instructions for creating a personal website on Github. Instructions can be got here <a href="https://gohugo.io/hosting-and-deployment/hosting-on-github/">https://gohugo.io/hosting-and-deployment/hosting-on-github/</a></p>
+<p>The Hugo website also has instructions for creating a personal website on Github. Instructions can be got at <a href="https://gohugo.io/hosting-and-deployment/hosting-on-github/">https://gohugo.io/hosting-and-deployment/hosting-on-github/</a></p>
 
 <h3 id="step-1-download-resources-and-setup-directories">Step 1: Download Resources and Setup Directories</h3>
 
 <ul>
 <li><p>Download and intall Git (<a href="https://gitforwindows.org/">https://gitforwindows.org/</a>)</p></li>
 
-<li><p>Sign up for a Github account</p></li>
+<li><p>Sign up for a Github account at www.github.com</p></li>
 
 <li><p>Create a &lt;BLOG&gt; repository on Github. This repository will contain Hugo&rsquo;s content and other source files.</p></li>
 
-<li><p>Create a &lt;USERNAME&gt;.github.io repository. This repository will hold the fully rendered version of the Hugo website.</p></li>
+<li><p>Create a &lt;USERNAME&gt;.github.io repository. This repository will hold the fully rendered version of the Hugo website. The <USERNAME> should be the same username you used to create the Github account.</p></li>
+
+<li><p>Substitute &lt;BLOG&gt; and &lt;USERNAME&gt; with proper literals in all the commands.</p></li>
 
 <li><p>Instructions for downloading and installing Hugo can be found at <a href="https://gohugo.io/getting-started/installing/#windows">https://gohugo.io/getting-started/installing/#windows</a></p></li>
 </ul>
@@ -142,19 +144,21 @@
 </code></pre>
 
 <ul>
-<li>(at the command prompt, change directory &lsquo;Sites&rsquo;)</li>
+<li>(at the command prompt, change directory to &lsquo;Sites&rsquo;)</li>
 
-<li><p>Give the following command:</p>
+<li><p>Give the following command to create a new site:</p>
 
 <pre><code>hugo new site &lt;BLOG&gt;
 </code></pre></li>
 
 <li><p>Change directory to &lt;BLOG&gt; directory</p></li>
 
-<li><p>Edit the config.toml file so that
-    baseurl = &ldquo;https://&lt;USERNAME&gt;.github.io/&rdquo;
-theme = &ldquo;hugo-geo&rdquo;
-themesdir = &ldquo;./themes/&rdquo;</p></li>
+<li><p>Edit the config.toml file so that</p>
+
+<pre><code>		baseurl = &quot;https://\&lt;USERNAME\&gt;.github.io/&quot;
+theme = &quot;hugo-geo&quot;
+themesdir = &quot;./themes/&quot;
+</code></pre></li>
 
 <li><p>Edit other parameters as necessary</p></li>
 
@@ -167,7 +171,7 @@ themesdir = &ldquo;./themes/&rdquo;</p></li>
 <h3 id="step-2-download-theme-and-clone-repositories">Step 2: Download Theme and Clone Repositories</h3>
 
 <ul>
-<li><p>Set the &lt;BLOG&gt; repository as origin. (The BLOG clone-link is generally <a href="https://github.com/">https://github.com/</a><USERNAME>/<BLOG>.git)</p>
+<li><p>Set the &lt;BLOG&gt; repository as origin. (The BLOG clone-link is generally <a href="https://github.com/">https://github.com/</a><USERNAME\>/&lt;BLOG&gt;.git)</p>
 
 <pre><code>git remote add origin &lt;HTTPS BLOG clone-link&gt;
 </code></pre></li>
@@ -179,18 +183,18 @@ themesdir = &ldquo;./themes/&rdquo;</p></li>
 </code></pre>
 
 <ul>
-<li><p>In the &lt;BLOG&gt;/content folder create a file named about.md with the following content:
-+++
-date = &ldquo;2018-06-17T08:00:00-06:00&rdquo;
+<li><p>In the &lt;BLOG&gt;/content folder create a file named about.md with the following content:</p>
+
+<pre><code>+++
+date = &quot;2018-06-17T08:00:00-06:00&quot;
 draft = false
-title = &ldquo;About&rdquo;
-+++</p>
+title = &quot;About&quot;
++++
+# Welcome
+Welcome to this test site.
+</code></pre></li>
 
-<h1 id="welcome">Welcome</h1>
-
-<p>Welcome to this test site.</p></li>
-
-<li><p>Map the &lt;USERNAME&gt;.github.io repository to the &lsquo;public&rsquo; folder which contains the rendered pages. The clone-link will be <a href="https://github.com/">https://github.com/</a><USERNAME\>/&lt;USERNAME&gt;.github.io.git</p>
+<li><p>Map the &lt;USERNAME&gt;.github.io repository to the &lsquo;public&rsquo; folder which contains the rendered pages. The clone-link will be <a href="https://github.com/">https://github.com/</a> &lt;USERNAME&gt;/ &lt;USERNAME&gt;.github.io.git</p>
 
 <pre><code>git submodule add &lt;HTTPS clone-link&gt; public
 </code></pre></li>
@@ -206,32 +210,33 @@ title = &ldquo;About&rdquo;
 
 <ul>
 <li>You can call Hugo to create blank posts or tutorials which can then be edited
-```
-hugo new post/<filename>.md</li>
+<code>
+hugo new post/&lt;filename&gt;.md
+</code></li>
 </ul>
 
-<pre><code></code></pre>
-
-<p>hugo new tutorial/<filename>.md</p>
-
-<pre><code>The files will be created in the 'post' / 'tutorial' folders within the 'content' folder.
-
-### Step 5: Rendering the Pages and Updating Github repositories.
-
-* The following commands may be saved in a batch file (.BAT) and run every time new posts have been written. (This batch file is to be saved in the 'Hugo\Sites' directory.)
+<pre><code>hugo new tutorial/&lt;filename&gt;.md
 </code></pre>
 
-<p>cd <BLOG>
+<p>The files will be created in the &lsquo;post&rsquo; / &lsquo;tutorial&rsquo; folders within the &lsquo;content&rsquo; folder.</p>
+
+<h3 id="step-5-rendering-the-pages-and-updating-github-repositories">Step 5: Rendering the Pages and Updating Github repositories.</h3>
+
+<ul>
+<li>The following commands may be saved in a batch file (.BAT) and run every time new posts have been written. (This batch file is to be saved in the &lsquo;Hugo\Sites&rsquo; directory.)
+<code>
+cd &lt;BLOG&gt;
 git add .
-git commit -m &ldquo;Update blog&rdquo;
+git commit -m &quot;Update blog&quot;
 git push -u origin master
 ..\bin\hugo
 cd public
 git add .
-git commit -m &ldquo;Update rendered site&rdquo;
+git commit -m &quot;Update rendered site&quot;
 git push -u origin master
 cd ..
-```</p>
+</code></li>
+</ul>
 
 <p>If you encounter errors especially when pushing content first time, change the flag for the &lsquo;git push&rsquo; commands from -u to -f which will force a push. You should not have a problem unless the files have been modified in the Github repository directly online, in which case you will have to use the &lsquo;git pull&rsquo; command to update the files stored locally.</p>
 
