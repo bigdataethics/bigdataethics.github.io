@@ -223,9 +223,10 @@ The files will be created in the &lsquo;post&rsquo; or &lsquo;tutorial&rsquo; fo
 <h3 id="step-5-rendering-the-pages-and-updating-github-repositories">Step 5: Rendering the Pages and Updating Github repositories.</h3>
 
 <ul>
-<li>The following commands may be saved in a batch file (.BAT) and run every time new posts have been written. This batch file is to be saved in the &lsquo;Hugo\Sites&rsquo; directory.
-<code>bat
-cd &lt;BLOG&gt;
+<li>The following commands may be saved in a batch file (.BAT) and run every time new content have been added. This batch file is to be saved in the &lsquo;Hugo\Sites&rsquo; directory and run from there. The first three <code>git</code> commands updates the &lt;BLOG&gt; repository. The <code>hugo</code> command renders the blog into the &lsquo;public&rsquo; folder. The last three <code>git</code> commands updates the &lt;USERNAME&gt; repository which contains the rendered content.</li>
+</ul>
+
+<pre><code>cd &lt;BLOG&gt;
 git add .
 git commit -m &quot;Update blog&quot;
 git push -u origin master
@@ -235,8 +236,7 @@ git add .
 git commit -m &quot;Update rendered site&quot;
 git push -u origin master
 cd ..
-</code></li>
-</ul>
+</code></pre>
 
 <p>If you encounter errors especially when pushing content first time, change the flag for the &lsquo;git push&rsquo; commands from -u to -f which will force a push. You should not have a problem unless the files have been modified in the Github repository directly online, in which case you will have to use the &lsquo;git pull&rsquo; command to update the files stored locally.</p>
 
