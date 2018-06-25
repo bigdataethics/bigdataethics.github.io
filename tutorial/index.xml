@@ -6,10 +6,22 @@
     <description>Recent content in Tutorials on Big Data Ethics</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 15 Jun 2018 23:38:36 -0500</lastBuildDate>
+    <lastBuildDate>Sun, 24 Jun 2018 16:59:11 -0500</lastBuildDate>
     
 	<atom:link href="https://bigdataethics.github.io/tutorial/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Blog using Hugo on Github</title>
+      <link>https://bigdataethics.github.io/tutorial/hugoblog-github/</link>
+      <pubDate>Sun, 24 Jun 2018 16:59:11 -0500</pubDate>
+      
+      <guid>https://bigdataethics.github.io/tutorial/hugoblog-github/</guid>
+      <description>How to Create a Personal Blog on Github using Hugo Github is a popular free static hosting service for personal and project pages. Hugo is a framework for building websites. More information about Hugo can be got at https://gohugo.io/hosting-and-deployment/hosting-on-github/
+The Hugo website also has instructions for creating a personal website on Github. Instructions can be got here https://gohugo.io/hosting-and-deployment/hosting-on-github/
+Step by Step  Download and intall Git (https://gitforwindows.org/)
+ Sign up for a Github account</description>
+    </item>
     
     <item>
       <title>Introduction to Identifying News Article Sentiment</title>
