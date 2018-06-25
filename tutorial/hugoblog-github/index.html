@@ -115,44 +115,70 @@
 
 <p>The Hugo website also has instructions for creating a personal website on Github. Instructions can be got here <a href="https://gohugo.io/hosting-and-deployment/hosting-on-github/">https://gohugo.io/hosting-and-deployment/hosting-on-github/</a></p>
 
-<h3 id="step-by-step">Step by Step</h3>
+<h3 id="step-by-step-download-resources-and-setup-directories">Step by Step: Download Resources and Setup Directories</h3>
 
 <ul>
 <li><p>Download and intall Git (<a href="https://gitforwindows.org/">https://gitforwindows.org/</a>)</p></li>
 
 <li><p>Sign up for a Github account</p></li>
 
-<li><p>Create a <BLOG> repository on Github. This repository will contain Hugo&rsquo;s content and other source files.</p></li>
+<li><p>Create a &lt;BLOG&gt; repository on Github. This repository will contain Hugo&rsquo;s content and other source files.</p></li>
 
-<li><p>Create a <USERNAME>.github.io repository. This repository will hold the fully rendered version of the Hugo website.</p></li>
+<li><p>Create a &lt;USERNAME&gt;.github.io repository. This repository will hold the fully rendered version of the Hugo website.</p></li>
 
 <li><p>Instructions for downloading and installing Hugo can be found at <a href="https://gohugo.io/getting-started/installing/#windows">https://gohugo.io/getting-started/installing/#windows</a></p></li>
 </ul>
 
 <p>Directory Structure:</p>
 
-<p>\Hugo
+<pre><code>\Hugo
   |
-  |&mdash; bin (contains the Hugo executable)
-  |&mdash; Sites
-         |&mdash; <BLOG> (contains the blog)
-                |&mdash; themes (contains the theme folder)
-                |&mdash; public (the rendered version of the blog)</p>
+  |--- bin (contains the Hugo executable)
+  |--- Sites
+         |--- &lt;BLOG&gt; (contains the blog)
+         	    |--- themes (contains the theme folder)
+         	    |--- public (the rendered version of the blog)
+
+</code></pre>
 
 <ul>
 <li>(at the command prompt, change directory &lsquo;Sites&rsquo;)</li>
 
-<li><p>Give the following commands:</p>
+<li><p>Give the following command:</p>
 
-<pre><code>		hugo new site &lt;BLOG&gt;
+<pre><code>hugo new site &lt;BLOG&gt;
 </code></pre></li>
 
-<li><p>Change directory to <BLOG> directory</p></li>
+<li><p>Change directory to &lt;BLOG&gt; directory</p></li>
 
 <li><p>Edit the config.toml file so that
-    baseurl = &ldquo;https://<USERNAME>.github.io/&rdquo;</p></li>
+    baseurl = &ldquo;https://&lt;USERNAME&gt;.github.io/&rdquo;</p></li>
 
 <li><p>Edit other parameters as necessary</p></li>
+</ul>
+
+<h3 id="step-by-step-download-theme-and-clone-repositories">Step by Step: Download Theme and Clone Repositories</h3>
+
+<ul>
+<li>Clone a theme for the blog. (I am using the hugo-geo theme for this example)</li>
+</ul>
+
+<pre><code>git clone https://github.com/alexurquhart/hugo-geo.git .\themes\hugo-geo
+</code></pre>
+
+<ul>
+<li><p>In the &lt;BLOG&gt;/content folder create a file named about.md with the following content:
++++
+date = &ldquo;2018-06-17T08:00:00-06:00&rdquo;
+draft = false
+title = &ldquo;About&rdquo;
++++</p>
+
+<h1 id="welcome">Welcome</h1>
+
+<p>Welcome to this test site.</p></li>
+
+<li><p>Map the &lt;USERNAME&gt;</p></li>
 </ul>
 
 	</article>
