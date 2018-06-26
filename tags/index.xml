@@ -2,12 +2,12 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Big Data Ethics</title>
-    <link>https://bigdataethics.github.io/tags/</link>
+    <link>https://joecoelhosj.github.io/tags/</link>
     <description>Recent content in Tags on Big Data Ethics</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     
-	<atom:link href="https://bigdataethics.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://joecoelhosj.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
   </channel>
