@@ -109,7 +109,7 @@
 	<article>
 		
 
-<h3 id="sentiment-analysis">Sentiment Analysis</h3>
+<h2 id="sentiment-analysis">Sentiment Analysis</h2>
 
 <p>Identifying the sentiment of a news article or tweet can be useful in many ways. For example, sentiment of news about stock or the economy or sentiment of tweets of a user regarding the stock market might correlate to movements in the stock market. These in turn can be used for personalizing recommendations or for predicting market sentiment. In this brief tutorial we will look at how news article sentiment can be guaged.</p>
 
@@ -125,13 +125,13 @@ news-please
 
 <p>We have already seen in another tutorial how tweets can be collected. In this example we will work with news articles. BeautifulSoup and Scrapy are two popular Python packages for scraping news web-sites and getting links to articles. Another popular Python package that helps collect news articles is &lsquo;news-please&rsquo;.</p>
 
-<h2 id="step-1-get-the-news-article-in-this-case-we-are-providing-the-url-for-the-news-article">Step 1: get the news article (in this case we are providing the url for the news article).</h2>
+<h3 id="step-1-get-the-news-article-in-this-case-we-are-providing-the-url-for-the-news-article">Step 1: get the news article (in this case we are providing the url for the news article).</h3>
 
 <pre><code class="language-python">import newsplease
 article = newsplease.NewsPlease.from_url('http://money.cnn.com/2018/07/03/news/companies/fiat-us-sales-future/index.html?iid=SF_LN')
 </code></pre>
 
-<h3 id="print-some-attributes-of-the-article">Print some attributes of the &ldquo;article&rdquo;.</h3>
+<h4 id="print-some-attributes-of-the-article">Print some attributes of the &ldquo;article&rdquo;.</h4>
 
 <p>The article title.</p>
 
@@ -192,9 +192,9 @@ print(article.description)
 <pre><code>    Fiat's US sales are down 44% so far this year and many question how long Fiat Chrysler will keep brand in the US.
 </code></pre>
 
-<h2 id="step-2-identifying-the-sentiment-of-the-news-article">Step 2: Identifying the sentiment of the news article</h2>
+<h3 id="step-2-identifying-the-sentiment-of-the-news-article">Step 2: Identifying the sentiment of the news article</h3>
 
-<h3 id="we-will-first-find-the-sentiment-of-the-article-using-the-python-package-textblob-the-sentiment-call-returns-two-values-polarity-in-the-range-1-to-1-and-subjectivity-in-the-range-0-to-1-polarity-value-1-indicates-negative-0-indicates-neutral-1-indicates-positive-sentiment-subjectivity-value-0-indicates-objective-1-indicates-subjective">We will first find the sentiment of the article using the Python package textblob. The &lsquo;sentiment&rsquo; call returns two values: polarity in the range -1 to +1, and subjectivity in the range 0 to 1. Polarity value -1 indicates &lsquo;negative&rsquo;, 0 indicates &lsquo;neutral&rsquo;, +1 indicates &lsquo;positive&rsquo; sentiment. Subjectivity value 0 indicates &lsquo;objective&rsquo;, 1 indicates &lsquo;subjective&rsquo;.</h3>
+<h4 id="we-will-first-find-the-sentiment-of-the-article-using-the-python-package-textblob-the-sentiment-call-returns-two-values-polarity-in-the-range-1-to-1-and-subjectivity-in-the-range-0-to-1-polarity-value-1-indicates-negative-0-indicates-neutral-1-indicates-positive-sentiment-subjectivity-value-0-indicates-objective-1-indicates-subjective">We will first find the sentiment of the article using the Python package textblob. The &lsquo;sentiment&rsquo; call returns two values: polarity in the range -1 to +1, and subjectivity in the range 0 to 1. Polarity value -1 indicates &lsquo;negative&rsquo;, 0 indicates &lsquo;neutral&rsquo;, +1 indicates &lsquo;positive&rsquo; sentiment. Subjectivity value 0 indicates &lsquo;objective&rsquo;, 1 indicates &lsquo;subjective&rsquo;.</h4>
 
 <pre><code class="language-python">from textblob import TextBlob
 article_text = TextBlob(article.text)
@@ -206,14 +206,15 @@ print(article.sentiment)
 
 <p>The above output indicates that the article is close to &lsquo;neutral&rsquo; in sentiment. But is that true? Let find the sentiment using another approach.</p>
 
-<h3 id="we-will-use-the-loughranmcdonald-word-library-https-sraf-nd-edu-textual-analysis-resources-lm-20sentiment-20word-20lists-to-identify-positive-and-negative-words-and-then-score-the-article-the-loughranmcdonald-word-library-is-a-list-of-words-tagged-as-positive-negative-uncertainty-litigious-modal-or-constraining">We will use the LoughranMcDonald word library (<a href="https://sraf.nd.edu/textual-analysis/resources/#LM%20Sentiment%20Word%20Lists">https://sraf.nd.edu/textual-analysis/resources/#LM%20Sentiment%20Word%20Lists</a>) to identify positive and negative words and then score the article. The LoughranMcDonald word library is a list of words tagged as &lsquo;positive&rsquo;, &lsquo;negative&rsquo;, &lsquo;uncertainty&rsquo;, &lsquo;litigious&rsquo;, &lsquo;modal&rsquo;, or &lsquo;constraining&rsquo;.</h3>
+<h4 id="we-will-use-the-loughranmcdonald-word-library-https-sraf-nd-edu-textual-analysis-resources-lm-20sentiment-20word-20lists-to-identify-positive-and-negative-words-and-then-score-the-article-the-loughranmcdonald-word-library-is-a-list-of-words-tagged-as-positive-negative-uncertainty-litigious-modal-or-constraining">We will use the LoughranMcDonald word library (<a href="https://sraf.nd.edu/textual-analysis/resources/#LM%20Sentiment%20Word%20Lists">https://sraf.nd.edu/textual-analysis/resources/#LM%20Sentiment%20Word%20Lists</a>) to identify positive and negative words and then score the article. The LoughranMcDonald word library is a list of words tagged as &lsquo;positive&rsquo;, &lsquo;negative&rsquo;, &lsquo;uncertainty&rsquo;, &lsquo;litigious&rsquo;, &lsquo;modal&rsquo;, or &lsquo;constraining&rsquo;.</h4>
 
-<h3 id="the-two-loughranmcdonald-word-library-source-files-are-avalable-at">The two LoughranMcDonald word library source files are avalable at:</h3>
+<h4 id="the-two-loughranmcdonald-word-library-source-files-are-avalable-at">The two LoughranMcDonald word library source files are avalable at:</h4>
 
-<p>GenericLong StopWords: <a href="https://drive.google.com/file/d/0B4niqV00F3msSktONVhfaElXeEk/view?usp=sharing">https://drive.google.com/file/d/0B4niqV00F3msSktONVhfaElXeEk/view?usp=sharing</a>
-Master Dictionary: <a href="https://drive.google.com/file/d/0B4niqV00F3msaFZGUEZNTGtBblU/view?usp=sharing">https://drive.google.com/file/d/0B4niqV00F3msaFZGUEZNTGtBblU/view?usp=sharing</a></p>
+<p>GenericLong StopWords: <a href="https://drive.google.com/file/d/0B4niqV00F3msSktONVhfaElXeEk/view?usp=sharing">https://drive.google.com/file/d/0B4niqV00F3msSktONVhfaElXeEk/view?usp=sharing</a></p>
 
-<h3 id="a-simple-sentiment-analzer-can-be-constructed-as-follows">A simple sentiment analzer can be constructed as follows:</h3>
+<p>Master Dictionary: <a href="https://drive.google.com/file/d/0B4niqV00F3msaFZGUEZNTGtBblU/view?usp=sharing">https://drive.google.com/file/d/0B4niqV00F3msaFZGUEZNTGtBblU/view?usp=sharing</a></p>
+
+<h4 id="a-simple-sentiment-analzer-can-be-constructed-as-follows">A simple sentiment analzer can be constructed as follows:</h4>
 
 <ol>
 <li>Collect all &lsquo;positive&rsquo; words and all &lsquo;negative&rsquo; words from the main word library into two separate lists.</li>
@@ -222,7 +223,7 @@ Master Dictionary: <a href="https://drive.google.com/file/d/0B4niqV00F3msaFZGUEZ
 <li>Before the article/tweet is analzed, it might be good to clean it of punctuations, stopwords, etc.</li>
 </ol>
 
-<h3 id="tokenize-the-words-in-the-text-and-convert-all-words-to-lowercase-load-the-stopwords-and-remove-stopwords-from-the-article-text">Tokenize the words in the text and convert all words to lowercase. Load the stopwords and remove stopwords from the article text.</h3>
+<h4 id="tokenize-the-words-in-the-text-and-convert-all-words-to-lowercase-load-the-stopwords-and-remove-stopwords-from-the-article-text">Tokenize the words in the text and convert all words to lowercase. Load the stopwords and remove stopwords from the article text.</h4>
 
 <pre><code class="language-python">import pandas as pd
 from nltk.tokenize import WordPunctTokenizer as wpt
@@ -269,7 +270,7 @@ words_new = [word for word in words if word not in stop_list]
 <pre><code>    ['america', 'buy', 'fiat', '.', 'fiat', &quot;'&quot;, 'sales', '44', '%', 'year', '.', 'brand', 'sold', 'cars', '2018', 'months', '2014', ',', 'fiat', &quot;'&quot;, 'recent', 'high', '-', 'water', 'mark', '.', 'americans', 'bought', 'alfa', 'romeos', 'fiats', 'year', '.', '&quot;', 'sales', 'brand', ',&quot;', 'rebecca', 'lindland', ',', 'analyst', 'cox', 'automotive', '.', 'company', 'sells', 'models', 'america', ':', 'fiat', '500', ',', '500l', '500x', ',', 'vehicles', ',', 'spider', '.', 'subcompact', 'cars', ',', 'falling', 'favor', 'american', 'customers', '.', 'sales', 'fall', ',', 'fiat', 'chrysler', '(', 'fcau', ')', 'pulled', 'spending', 'small', 'car', 'brand', '.', 'company', 'made', 'clear', 'emphasize', 'trucks', 'suvs', 'sedans', 'forward', '.', 'fiat', ',', 'dodge', 'chrysler', 'brands', 'collectively', 'slated', 'receive', '25', '%', 'company', &quot;'&quot;, 'investment', 'spending', '--', 'lion', &quot;'&quot;, 'share', 'ram', 'jeep', '.', 'related', ':', 'things', 'don', &quot;'&quot;, 'good', 'dodge', 'chrysler', '&quot;', 'making', 'money', 'cars', ',', 'small', ',', 'cheap', 'cars', ',&quot;', 'michelle', 'krebs', ',', 'analyst', 'autotrader', '.', 'fiat', 'face', 'additional', 'hurdle', ':', 'trump', 'administration', &quot;'&quot;, 'threat', 'impose', 'tariffs', 'imported', 'cars', ',', 'europe', '.', 'significantly', 'raise', 'price', 'fiats', '--', 'potentially', 'final', 'straw', 'automaker', 'moving', 'direction', '.', 'related', ':', '-', 'made', 'car', 'import', '.', &quot;'&quot;, 'bad', 'news', 'automakers', 'fiat', 'rescued', 'chrysler', 'bankruptcy', '2009', '.', 'italian', 'brand', 'returned', 'market', 'years', ',', '-', 'decade', 'absence', '.', 'brand', 'united', 'states', '.', ',', 'demand', 'commitment', 'company', ',', 'dealers', 'don', &quot;'&quot;, 'continue', 'giving', 'resources', 'floor', 'space', 'selling', 'fiats', '.', '&quot;', &quot;'&quot;, 'demand', 'cars', &quot;'&quot;, 'profit', ',', 'dealers', ',&quot;', 'krebs', '.', 'dealers', 'paid', 'dealership', 'rights', ',', 'made', 'investments', 'sell', 'brand', '.', 'company', &quot;'&quot;, 'decision', 'kill', 'fiat', 'brand', 'united', 'states', 'dealership', 'math', '.', '&quot;', 'depend', 'buy', ',&quot;', 'lindland', '.', '&quot;', &quot;'&quot;, 'sitting', 'dealer', ',', &quot;'&quot;, 'll', 'sort', 'reparations', '.&quot;', '13', 'american', 'dealerships', 'sell', 'fiat', 'fiat', 'chrysler', 'brand', '.', 'fiat', &quot;'&quot;, '400', 'dealerships', 'sell', 'chryslers', ',', 'dodges', ',', 'jeeps', 'rams', '.', '100', 'sell', 'alfa', 'romeos', '.']
 </code></pre>
 
-<h3 id="load-the-loughranmcdonald-master-word-list-into-a-pandas-dataframe-the-dataframe-has-the-following-columns">Load the LoughranMcDonald master word list into a pandas dataframe. The dataframe has the following columns:</h3>
+<h4 id="load-the-loughranmcdonald-master-word-list-into-a-pandas-dataframe-the-dataframe-has-the-following-columns">Load the LoughranMcDonald master word list into a pandas dataframe. The dataframe has the following columns:</h4>
 
 <p>Word, Sequence Number, Word Count, Word Proportion, Average Proportion, Std Dev, Doc Count, Negative, Positive,    Uncertainty, Litigious, Constraining, Superfluous, Interesting, Modal, Irr_Verb, Harvard_IV, Syllables, Source.</p>
 
@@ -288,7 +289,7 @@ pos_words = [word.lower() for word in pos_words]
 neg_words = [word.lower() for word in neg_words]
 </code></pre>
 
-<h3 id="retain-only-the-positive-words-and-negative-words-from-the-article-text-and-print-the-count-of-each">Retain only the &lsquo;positive&rsquo; words and &lsquo;negative&rsquo; words from the article text and print the count of each.</h3>
+<h4 id="retain-only-the-positive-words-and-negative-words-from-the-article-text-and-print-the-count-of-each">Retain only the &lsquo;positive&rsquo; words and &lsquo;negative&rsquo; words from the article text and print the count of each.</h4>
 
 <pre><code class="language-python">words_new_pos = [word for word in words_new if word in pos_words]
 words_new_neg = [word for word in words_new if word in neg_words]
@@ -301,7 +302,7 @@ print(&quot;Positive Score: &quot;,len(words_new_pos),&quot;Negative Score: &quo
 
 <p>The above scores indicate that the article has a negative sentiment.</p>
 
-<h3 id="improving-the-sentiment-analyzer">Improving the sentiment analyzer.</h3>
+<h4 id="improving-the-sentiment-analyzer">Improving the sentiment analyzer.</h4>
 
 <p>The above method counts the number of positive words and negative words in the article and uses the difference in counts to indicate sentiment. The method can be improved by taking into account other collections (like constraining or uncertainity) in the master word list. Another improvement could give higher weight to &lsquo;positive&rsquo; or &lsquo;negative&rsquo; words that occur in the first section of the article.</p>
 
