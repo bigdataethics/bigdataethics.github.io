@@ -11,4 +11,58 @@
     
     
   </channel>
+</rss>el="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Blog using Hugo on Github</title>
+      <link>https://joecoelhosj.github.io/tutorial/hugoblog-github/</link>
+      <pubDate>Sun, 24 Jun 2018 16:59:11 -0500</pubDate>
+      
+      <guid>https://joecoelhosj.github.io/tutorial/hugoblog-github/</guid>
+      <description>How to Create a Personal Blog on Github using Hugo Github is a popular free static hosting service for personal and project pages. Hugo is a framework for building websites. More information about Hugo can be got at https://gohugo.io/hosting-and-deployment/hosting-on-github/
+The Hugo website also has instructions for creating a personal website on Github. Instructions can be got at https://gohugo.io/hosting-and-deployment/hosting-on-github/
+Step 1: Download Resources and Setup Directories  Download and intall Git (https://gitforwindows.</description>
+    </item>
+    
+    <item>
+      <title>Introduction to Identifying News Article Sentiment</title>
+      <link>https://joecoelhosj.github.io/tutorial/newsarticlesentiment/</link>
+      <pubDate>Fri, 15 Jun 2018 23:38:36 -0500</pubDate>
+      
+      <guid>https://joecoelhosj.github.io/tutorial/newsarticlesentiment/</guid>
+      <description>Sentiment Analysis Identifying the sentiment of a news article or tweet can be useful in many ways. For example, sentiment of news about stock or the economy or sentiment of tweets of a user regarding the stock market might correlate to movements in the stock market. These in turn can be used for personalizing recommendations or for predicting market sentiment. In this brief tutorial we will look at how news article sentiment can be guaged.</description>
+    </item>
+    
+    <item>
+      <title>Handling data in JSON and CSV formats</title>
+      <link>https://joecoelhosj.github.io/tutorial/twitter-python-3/</link>
+      <pubDate>Sat, 28 Oct 2017 09:16:42 -0500</pubDate>
+      
+      <guid>https://joecoelhosj.github.io/tutorial/twitter-python-3/</guid>
+      <description>Python includes packages for handling data in JSON and CSV formats. JSON stands for JavaScript Object Notation format. It is basically a key-value pair store. CSV stands for Comma Separated Variables. It is a list of data values separated by comma (or some other delimiter).
+If you open the tweets.txt file saved in the previous session, you will notice that each line is in the JSON format. Each tweet is enclosed in braces {}, and within the braces are key:value pairs separated by commas.</description>
+    </item>
+    
+    <item>
+      <title>Collecting Streaming Twitter Data</title>
+      <link>https://joecoelhosj.github.io/tutorial/twitter-python-2/</link>
+      <pubDate>Sat, 28 Oct 2017 09:15:27 -0500</pubDate>
+      
+      <guid>https://joecoelhosj.github.io/tutorial/twitter-python-2/</guid>
+      <description>Twitter no longer provides free access to all streaming tweets (Twitter Firehose). However, it does allow access to &amp;ldquo;some&amp;rdquo; streaming tweets in real time based on filters. In the code below all tweets having &amp;lsquo;Las Vegas&amp;rsquo; in them will be filtered. [More: http://tweepy.readthedocs.io/en/v3.5.0/streaming_how_to.html]
+One needs to be aware of the rate limits imposed by Twitter while accessing their feeds. It is always advisable to include pauses in code execution to ensure that the rate limits are not violated OR include error handling routines that can trap rate violation errors.</description>
+    </item>
+    
+    <item>
+      <title>Introduction to Reading Twitter Data in Python</title>
+      <link>https://joecoelhosj.github.io/tutorial/twitter-python-1/</link>
+      <pubDate>Fri, 27 Oct 2017 23:38:36 -0500</pubDate>
+      
+      <guid>https://joecoelhosj.github.io/tutorial/twitter-python-1/</guid>
+      <description>Social Media Analysis Social media has become the go-to place for information and opinions. Social media can be mined to gauge sentiment, analyze opinion, identity interests, locate concerns, and so on. Facebook, Pinterest, Instagram, Twitter, Google+ are some social media platforms. Among them, Twitter data is public and can be mined relatively easily.
+First of all you need to obtain access codes from Twitter to be able to mine Twitter data.</description>
+    </item>
+    
+  </channel>
 </rss>
