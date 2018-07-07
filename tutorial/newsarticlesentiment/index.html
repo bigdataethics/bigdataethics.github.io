@@ -111,303 +111,199 @@
 
 <h3 id="sentiment-analysis">Sentiment Analysis</h3>
 
-<p>Identifying the sentiment of a news article or tweet can be useful in many ways. For example, sentiment of news about stock or the economy might correlate to movements in the stock market. Or sentiment of tweets of an user might correlate to the mood of the user. These in turn can be used for personalizing recommendations or for predicting market sentiment. In this brief tutorial we will look at how news article sentiment can be guaged.</p>
+<p>Identifying the sentiment of a news article or tweet can be useful in many ways. For example, sentiment of news about stock or the economy or sentiment of tweets of a user regarding the stock market might correlate to movements in the stock market. These in turn can be used for personalizing recommendations or for predicting market sentiment. In this brief tutorial we will look at how news article sentiment can be guaged.</p>
 
 <h3 id="python-packages">Python Packages:</h3>
 
-<pre><code>hello
+<pre><code>pandas
+nltk
+textblob
+news-please
 </code></pre>
 
 <h3 id="getting-a-news-article">Getting a News Article</h3>
 
-<p>We have already seen how tweets can be collected. In this example we will work with news articles. BeautifulSoup and Scrapy are two popular Python packages for scraping news web-sites and getting links to articles. Another popular Python package that helps collect news articles is &lsquo;news-please&rsquo;.</p>
+<p>We have already seen in another tutorial how tweets can be collected. In this example we will work with news articles. BeautifulSoup and Scrapy are two popular Python packages for scraping news web-sites and getting links to articles. Another popular Python package that helps collect news articles is &lsquo;news-please&rsquo;.</p>
 
 <h2 id="step-1-get-the-news-article-in-this-case-we-are-providing-the-url-for-the-news-article">Step 1: get the news article (in this case we are providing the url for the news article).</h2>
 
-<h3 id="websites-can-be-scraped-for-news-article-links-and-those-can-be-used-for-the-actual-analysis">Websites can be scraped for news article links and those can be used for the actual analysis.</h3>
-
-<h3 id="newsplease-is-a-python-package-that-enables-extracting-news-articles">&ldquo;newsplease&rdquo; is a Python package that enables extracting news articles.</h3>
-
 <pre><code class="language-python">import newsplease
+article = newsplease.NewsPlease.from_url('http://money.cnn.com/2018/07/03/news/companies/fiat-us-sales-future/index.html?iid=SF_LN')
 </code></pre>
 
-<pre><code class="language-python">article = newsplease.NewsPlease.from_url('https://www.cnn.com/2018/06/21/us/undocumented-migrant-children-detention-facilities-abuse-invs/index.html')
+<h3 id="print-some-attributes-of-the-article">Print some attributes of the &ldquo;article&rdquo;.</h3>
+
+<p>The article title.</p>
+
+<pre><code class="language-python"># Print the title of the article
+print(article.title)
 </code></pre>
 
-<pre><code class="language-python">print(article.title)
+<pre><code>    Plunging Fiat sales leave its American future in doubt
 </code></pre>
 
-<pre><code>Children allege grave abuse at migrant detention facilities
+<p>The text of the article. (Note: It might be necessary to clean the text so that items like &lsquo;Related:&rsquo; do not affect the overall sentiment analysis. In this example the extra-text has been retained.)</p>
+
+<pre><code class="language-python"># Print the text of the article
+print(article.text)
 </code></pre>
 
-<pre><code class="language-python">print(article.text)
+<pre><code>    Hardly anyone in America wants to buy a Fiat.
+    Fiat's US sales are down 44% this year. The brand has sold just a third as many cars in 2018 as it did during the first six months of 2014, Fiat's recent high-water mark. Americans bought far more Alfa Romeos than Fiats this year.
+    &quot;You look at sales and wonder why the brand is still here,&quot; said Rebecca Lindland, analyst for Cox Automotive.
+    The company sells four models in America: The Fiat 500, the 500L and 500X, which are three different vehicles, and the Spider. All are subcompact cars, which are falling out of favor with American customers.
+    As sales fall, Fiat Chrysler (FCAU) has pulled spending for its small car brand. The company made clear it wants to emphasize trucks and SUVs over sedans going forward. Fiat, Dodge and Chrysler brands are collectively slated to receive just 25% of of the company's investment spending -- the lion's share will go to Ram and Jeep.
+    Related: Things don't look good for Dodge and Chrysler
+    &quot;Nobody is making much of any money on cars, especially small, cheap cars,&quot; said Michelle Krebs, analyst for AutoTrader.
+    Fiat could face an additional hurdle: the Trump administration's threat to impose tariffs on imported cars, particularly on those from Europe. That could significantly raise the price of Fiats -- potentially the final straw for an automaker already moving in another direction.
+    Related: Every US-made car is an import. That's bad news for automakers
+    Fiat rescued Chrysler from bankruptcy in 2009. The Italian brand returned to the US market two years later, following a three-decade absence.
+    The brand never took off in the United States. Without, much demand or commitment from the company, many dealers probably don't want to continue giving their own resources and floor space to selling Fiats.
+    &quot;There's not the demand for cars and there's not much profit in them, especially for dealers,&quot; said Krebs.
+    But the dealers have paid the dealership rights, and made investments to sell the brand. The company's decision whether or not to kill the Fiat brand in the United States may come down to the dealership math.
+    &quot;It could all depend on how much it is to buy them out,&quot; said Lindland. &quot;If you're sitting there as a dealer, you'll want some sort of reparations.&quot;
+    Only 13 American dealerships sell Fiat as their only Fiat Chrysler brand. Most of Fiat's nearly 400 US dealerships also sell Chryslers, Dodges, Jeeps and Rams. About 100 sell Alfa Romeos.
 </code></pre>
 
-<pre><code>(CNN) A year before the Trump administration's &quot;zero-tolerance&quot; policy resulted in more than 2,300 children being separated from their families at the border in a mere five-week period, a ninth-grader in McAllen, Texas, was taken from his mother.
-He was riding in a car with friends last spring when the car was pulled over. The teenager, brought illegally to the country by his mother as a baby, was unable to show identification. Police called immigration officials, who arrested the boy and sent him to a shelter for unaccompanied migrant children.
-John Doe 2, as he is referred to in current legal filings challenging his detainment, became one of thousands caught in a network of shelters and higher-security facilities that house undocumented minors, now gaining attention as newly separated children have been streaming in.
-Immigration attorneys working directly with migrant children say some of these facilities provide the best care they can, given the circumstances. And a huge shelter in Brownsville, Texas, which opened its doors for a media tour last week, appeared to be clean and well-staffed at the time.
-But John Doe 2 landed in a far more troubled corner of the system, according to a first-person sworn declaration in a current legal motion against the federal government for unlawful and inappropriate detainment of children. His account is one of dozens describing overloaded and secretive shelters, treatment centers and secure detention facilities for undocumented minors, which at their worst have allegedly been home to neglect, assault and other horrific abuse.
-</code></pre>
+<p>Other attributes of the article can be viewed by calling the appropriate methods.</p>
 
 <pre><code class="language-python"># Checking what other attributes are available
 print(dir(article))
 </code></pre>
 
-<pre><code>['__class__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__sizeof__', '__str__', '__subclasshook__', '__weakref__', 'authors', 'date_download', 'date_modify', 'date_publish', 'description', 'filename', 'get_dict', 'image_url', 'language', 'localpath', 'source_domain', 'text', 'title', 'title_page', 'title_rss', 'url']
+<pre><code>    ['__class__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__sizeof__', '__str__', '__subclasshook__', '__weakref__', 'authors', 'date_download', 'date_modify', 'date_publish', 'description', 'filename', 'get_dict', 'image_url', 'language', 'localpath', 'source_domain', 'text', 'title', 'title_page', 'title_rss', 'url']
 </code></pre>
 
-<pre><code class="language-python">print(article.authors)
+<p>Print the name(s) of the authors of the article.</p>
+
+<pre><code class="language-python"># Print the names of the author(s) of the article
+print(article.authors)
 </code></pre>
 
-<pre><code>['Blake Ellis', 'Melanie Hicken', 'Bob Ortega', 'Cnn Investigates']
+<pre><code>    ['Chris Isidore']
 </code></pre>
 
-<pre><code class="language-python">print(article.description)
+<p>Print the lead paragraph of the article.</p>
+
+<pre><code class="language-python"># Print the first paragraph of the article
+print(article.description)
 </code></pre>
 
-<pre><code>In court documents, children allege grave abuse at migrant detention facilities, ranging from handcuffs to assaults to drugs disguised as vitamins.
+<pre><code>    Fiat's US sales are down 44% so far this year and many question how long Fiat Chrysler will keep brand in the US.
 </code></pre>
 
 <h2 id="step-2-identifying-the-sentiment-of-the-news-article">Step 2: Identifying the sentiment of the news article</h2>
 
-<h3 id="wordtokenize-the-text-remove-stopwords">WordTokenize the text; remove stopwords</h3>
+<h3 id="we-will-first-find-the-sentiment-of-the-article-using-the-python-package-textblob-the-sentiment-call-returns-two-values-polarity-in-the-range-1-to-1-and-subjectivity-in-the-range-0-to-1-polarity-value-1-indicates-negative-0-indicates-neutral-1-indicates-positive-sentiment-subjectivity-value-0-indicates-objective-1-indicates-subjective">We will first find the sentiment of the article using the Python package textblob. The &lsquo;sentiment&rsquo; call returns two values: polarity in the range -1 to +1, and subjectivity in the range 0 to 1. Polarity value -1 indicates &lsquo;negative&rsquo;, 0 indicates &lsquo;neutral&rsquo;, +1 indicates &lsquo;positive&rsquo; sentiment. Subjectivity value 0 indicates &lsquo;objective&rsquo;, 1 indicates &lsquo;subjective&rsquo;.</h3>
 
-<h3 id="use-the-loughranmcdonald-word-library-https-sraf-nd-edu-textual-analysis-resources-lm-20sentiment-20word-20lists-to-identify-positive-and-negative-words-and-then-score-the-article">Use the LoughranMcDonald word library (<a href="https://sraf.nd.edu/textual-analysis/resources/#LM%20Sentiment%20Word%20Lists">https://sraf.nd.edu/textual-analysis/resources/#LM%20Sentiment%20Word%20Lists</a>) to identify positive and negative words and then score the article.</h3>
+<pre><code class="language-python">from textblob import TextBlob
+article_text = TextBlob(article.text)
+print(article.sentiment)
+</code></pre>
+
+<pre><code>    Sentiment(polarity=0.08844850948509486, subjectivity=0.4478319783197831)
+</code></pre>
+
+<p>The above output indicates that the article is close to &lsquo;neutral&rsquo; in sentiment. But is that true? Let find the sentiment using another approach.</p>
+
+<h3 id="we-will-use-the-loughranmcdonald-word-library-https-sraf-nd-edu-textual-analysis-resources-lm-20sentiment-20word-20lists-to-identify-positive-and-negative-words-and-then-score-the-article-the-loughranmcdonald-word-library-is-a-list-of-words-tagged-as-positive-negative-uncertainty-litigious-modal-or-constraining">We will use the LoughranMcDonald word library (<a href="https://sraf.nd.edu/textual-analysis/resources/#LM%20Sentiment%20Word%20Lists">https://sraf.nd.edu/textual-analysis/resources/#LM%20Sentiment%20Word%20Lists</a>) to identify positive and negative words and then score the article. The LoughranMcDonald word library is a list of words tagged as &lsquo;positive&rsquo;, &lsquo;negative&rsquo;, &lsquo;uncertainty&rsquo;, &lsquo;litigious&rsquo;, &lsquo;modal&rsquo;, or &lsquo;constraining&rsquo;.</h3>
+
+<h3 id="the-two-loughranmcdonald-word-library-source-files-are-avalable-at">The two LoughranMcDonald word library source files are avalable at:</h3>
+
+<p>GenericLong StopWords: <a href="https://drive.google.com/file/d/0B4niqV00F3msSktONVhfaElXeEk/view?usp=sharing">https://drive.google.com/file/d/0B4niqV00F3msSktONVhfaElXeEk/view?usp=sharing</a>
+Master Dictionary: <a href="https://drive.google.com/file/d/0B4niqV00F3msaFZGUEZNTGtBblU/view?usp=sharing">https://drive.google.com/file/d/0B4niqV00F3msaFZGUEZNTGtBblU/view?usp=sharing</a></p>
+
+<h3 id="a-simple-sentiment-analzer-can-be-constructed-as-follows">A simple sentiment analzer can be constructed as follows:</h3>
+
+<ol>
+<li>Collect all &lsquo;positive&rsquo; words and all &lsquo;negative&rsquo; words from the main word library into two separate lists.</li>
+<li>Count how many words of the article/tweet are found in the &lsquo;positive&rsquo; list and in the &lsquo;negative&rsquo; list.</li>
+<li>If the count of &lsquo;positive&rsquo; words is greater than the &lsquo;negative&rsquo; words, the sentiment is &lsquo;positive&rsquo;. If the count of &lsquo;negative&rsquo; words is greater than the &lsquo;positive&rsquo; words, the sentiment is &lsquo;negative&rsquo;.</li>
+<li>Before the article/tweet is analzed, it might be good to clean it of punctuations, stopwords, etc.</li>
+</ol>
+
+<h3 id="tokenize-the-words-in-the-text-and-convert-all-words-to-lowercase-load-the-stopwords-and-remove-stopwords-from-the-article-text">Tokenize the words in the text and convert all words to lowercase. Load the stopwords and remove stopwords from the article text.</h3>
 
 <pre><code class="language-python">import pandas as pd
 from nltk.tokenize import WordPunctTokenizer as wpt
-</code></pre>
 
-<pre><code class="language-python"># Tokenize the words and convert to lowercase
+# Tokenize the words and convert to lowercase
 words = wpt().tokenize(article.text)
 words = [word.lower() for word in words]
 </code></pre>
 
+<p>Print the tokenized list. (Note: Numbers and punctuation marks have not been removed.)</p>
+
 <pre><code class="language-python">print(words)
 </code></pre>
 
-<pre><code>['(', 'cnn', ')', 'a', 'year', 'before', 'the', 'trump', 'administration', &quot;'&quot;, 's', '&quot;', 'zero', '-', 'tolerance', '&quot;', 'policy', 'resulted', 'in', 'more', 'than', '2', ',', '300', 'children', 'being', 'separated', 'from', 'their', 'families', 'at', 'the', 'border', 'in', 'a', 'mere', 'five', '-', 'week', 'period', ',', 'a', 'ninth', '-', 'grader', 'in', 'mcallen', ',', 'texas', ',', 'was', 'taken', 'from', 'his', 'mother', '.', 'he', 'was', 'riding', 'in', 'a', 'car', 'with', 'friends', 'last', 'spring', 'when', 'the', 'car', 'was', 'pulled', 'over', '.', 'the', 'teenager', ',', 'brought', 'illegally', 'to', 'the', 'country', 'by', 'his', 'mother', 'as', 'a', 'baby', ',', 'was', 'unable', 'to', 'show', 'identification', '.', 'police', 'called', 'immigration', 'officials', ',', 'who', 'arrested', 'the', 'boy', 'and', 'sent', 'him', 'to', 'a', 'shelter', 'for', 'unaccompanied', 'migrant', 'children', '.', 'john', 'doe', '2', ',', 'as', 'he', 'is', 'referred', 'to', 'in', 'current', 'legal', 'filings', 'challenging', 'his', 'detainment', ',', 'became', 'one', 'of', 'thousands', 'caught', 'in', 'a', 'network', 'of', 'shelters', 'and', 'higher', '-', 'security', 'facilities', 'that', 'house', 'undocumented', 'minors', ',', 'now', 'gaining', 'attention', 'as', 'newly', 'separated', 'children', 'have', 'been', 'streaming', 'in', '.', 'immigration', 'attorneys', 'working', 'directly', 'with', 'migrant', 'children', 'say', 'some', 'of', 'these', 'facilities', 'provide', 'the', 'best', 'care', 'they', 'can', ',', 'given', 'the', 'circumstances', '.', 'and', 'a', 'huge', 'shelter', 'in', 'brownsville', ',', 'texas', ',', 'which', 'opened', 'its', 'doors', 'for', 'a', 'media', 'tour', 'last', 'week', ',', 'appeared', 'to', 'be', 'clean', 'and', 'well', '-', 'staffed', 'at', 'the', 'time', '.', 'but', 'john', 'doe', '2', 'landed', 'in', 'a', 'far', 'more', 'troubled', 'corner', 'of', 'the', 'system', ',', 'according', 'to', 'a', 'first', '-', 'person', 'sworn', 'declaration', 'in', 'a', 'current', 'legal', 'motion', 'against', 'the', 'federal', 'government', 'for', 'unlawful', 'and', 'inappropriate', 'detainment', 'of', 'children', '.', 'his', 'account', 'is', 'one', 'of', 'dozens', 'describing', 'overloaded', 'and', 'secretive', 'shelters', ',', 'treatment', 'centers', 'and', 'secure', 'detention', 'facilities', 'for', 'undocumented', 'minors', ',', 'which',  'about', 'facilities', 'holding', 'migrant', 'children', '?', 'email', 'us', ':', 'watchdog', '@', 'cnn', '.', 'com', '.']
+<pre><code>    ['hardly', 'anyone', 'in', 'america', 'wants', 'to', 'buy', 'a', 'fiat', '.', 'fiat', &quot;'&quot;, 's', 'us', 'sales', 'are', 'down', '44', '%', 'this', 'year', '.', 'the', 'brand', 'has', 'sold', 'just', 'a', 'third', 'as', 'many', 'cars', 'in', '2018', 'as', 'it', 'did', 'during', 'the', 'first', 'six', 'months', 'of', '2014', ',', 'fiat', &quot;'&quot;, 's', 'recent', 'high', '-', 'water', 'mark', '.', 'americans', 'bought', 'far', 'more', 'alfa', 'romeos', 'than', 'fiats', 'this', 'year', '.', '&quot;', 'you', 'look', 'at', 'sales', 'and', 'wonder', 'why', 'the', 'brand', 'is', 'still', 'here', ',&quot;', 'said', 'rebecca', 'lindland', ',', 'analyst', 'for', 'cox', 'automotive', '.', 'the', 'company', 'sells', 'four', 'models', 'in', 'america', ':', 'the', 'fiat', '500', ',', 'the', '500l', 'and', '500x', ',', 'which', 'are', 'three', 'different', 'vehicles', ',', 'and', 'the', 'spider', '.', 'all', 'are', 'subcompact', 'cars', ',', 'which', 'are', 'falling', 'out', 'of', 'favor', 'with', 'american', 'customers', '.', 'as', 'sales', 'fall', ',', 'fiat', 'chrysler', '(', 'fcau', ')', 'has', 'pulled', 'spending', 'for', 'its', 'small', 'car', 'brand', '.', 'the', 'company', 'made', 'clear', 'it', 'wants', 'to', 'emphasize', 'trucks', 'and', 'suvs', 'over', 'sedans', 'going', 'forward', '.', 'fiat', ',', 'dodge', 'and', 'chrysler', 'brands', 'are', 'collectively', 'slated', 'to', 'receive', 'just', '25', '%', 'of', 'of', 'the', 'company', &quot;'&quot;, 's', 'investment', 'spending', '--', 'the', 'lion', &quot;'&quot;, 's', 'share', 'will', 'go', 'to', 'ram', 'and', 'jeep', '.', 'related', ':', 'things', 'don', &quot;'&quot;, 't', 'look', 'good', 'for', 'dodge', 'and', 'chrysler', '&quot;', 'nobody', 'is', 'making', 'much', 'of', 'any', 'money', 'on', 'cars', ',', 'especially', 'small', ',', 'cheap', 'cars', ',&quot;', 'said', 'michelle', 'krebs', ',', 'analyst', 'for', 'autotrader', '.', 'fiat', 'could', 'face', 'an', 'additional', 'hurdle', ':', 'the', 'trump', 'administration', &quot;'&quot;, 's', 'threat', 'to', 'impose', 'tariffs', 'on', 'imported', 'cars', ',', 'particularly', 'on', 'those', 'from', 'europe', '.', 'that', 'could', 'significantly', 'raise', 'the', 'price', 'of', 'fiats', '--', 'potentially', 'the', 'final', 'straw', 'for', 'an', 'automaker', 'already', 'moving', 'in', 'another', 'direction', '.', 'related', ':', 'every', 'us', '-', 'made', 'car', 'is', 'an', 'import', '.', 'that', &quot;'&quot;, 's', 'bad', 'news', 'for', 'automakers', 'fiat', 'rescued', 'chrysler', 'from', 'bankruptcy', 'in', '2009', '.', 'the', 'italian', 'brand', 'returned', 'to', 'the', 'us', 'market', 'two', 'years', 'later', ',', 'following', 'a', 'three', '-', 'decade', 'absence', '.', 'the', 'brand', 'never', 'took', 'off', 'in', 'the', 'united', 'states', '.', 'without', ',', 'much', 'demand', 'or', 'commitment', 'from', 'the', 'company', ',', 'many', 'dealers', 'probably', 'don', &quot;'&quot;, 't', 'want', 'to', 'continue', 'giving', 'their', 'own', 'resources', 'and', 'floor', 'space', 'to', 'selling', 'fiats', '.', '&quot;', 'there', &quot;'&quot;, 's', 'not', 'the', 'demand', 'for', 'cars', 'and', 'there', &quot;'&quot;, 's', 'not', 'much', 'profit', 'in', 'them', ',', 'especially', 'for', 'dealers', ',&quot;', 'said', 'krebs', '.', 'but', 'the', 'dealers', 'have', 'paid', 'the', 'dealership', 'rights', ',', 'and', 'made', 'investments', 'to', 'sell', 'the', 'brand', '.', 'the', 'company', &quot;'&quot;, 's', 'decision', 'whether', 'or', 'not', 'to', 'kill', 'the', 'fiat', 'brand', 'in', 'the', 'united', 'states', 'may', 'come', 'down', 'to', 'the', 'dealership', 'math', '.', '&quot;', 'it', 'could', 'all', 'depend', 'on', 'how', 'much', 'it', 'is', 'to', 'buy', 'them', 'out', ',&quot;', 'said', 'lindland', '.', '&quot;', 'if', 'you', &quot;'&quot;, 're', 'sitting', 'there', 'as', 'a', 'dealer', ',', 'you', &quot;'&quot;, 'll', 'want', 'some', 'sort', 'of', 'reparations', '.&quot;', 'only', '13', 'american', 'dealerships', 'sell', 'fiat', 'as', 'their', 'only', 'fiat', 'chrysler', 'brand', '.', 'most', 'of', 'fiat', &quot;'&quot;, 's', 'nearly', '400', 'us', 'dealerships', 'also', 'sell', 'chryslers', ',', 'dodges', ',', 'jeeps', 'and', 'rams', '.', 'about', '100', 'sell', 'alfa', 'romeos', '.']
 </code></pre>
 
+<p>Load the LoughranMcDonald generic stopword list into a pandas dataframe and convert it into a list.</p>
+
 <pre><code class="language-python">#Load stopword lists
-stopwords = pd.read_csv(&quot;StopWords_GenericLong.txt&quot;,names=['Word'])
+stopwords = pd.read_csv(&quot;https://drive.google.com/file/d/0B4niqV00F3msSktONVhfaElXeEk/view?usp=sharing&quot;,names=['Word'])
 stop_list = stopwords['Word'].tolist()
 </code></pre>
+
+<p>Take a look at what the stopwords are.</p>
 
 <pre><code class="language-python">print(stop_list)
 </code></pre>
 
-<pre><code>['a', &quot;a's&quot;, 'able', 'about', 'above', 'according', 'accordingly', 'across', 'actually', 'after', 'afterwards', 'again', 'against', &quot;ain't&quot;, 'all', 'allow', 'allows', 'almost', 'alone', 'along', 'already', 'also', 'although', 'always', 'am', 'among', 'amongst', 'an', 'and', 'another', 'any', 'anybody', 'anyhow', 'anyone', 'anything', 'anyway', 'anyways', 'anywhere', 'apart', 'appear', 'appreciate', 'appropriate', 'are', &quot;aren't&quot;, 'around', 'as', 'aside', 'ask', 'asking', 'associated', 'at', 'available', 'away', 'awfully', 'b', 'be', 'became', 'because', 'become', 'becomes', 'becoming', 'been', 'before', 'beforehand', 'behind', 'being', 'believe', 'below', 'beside', 'besides', 'best', 'better', 'between', 'beyond', 'both', 'brief', 'but', 'by', 'c', &quot;c'mon&quot;, &quot;c's&quot;, 'came', 'can', &quot;can't&quot;, 'cannot', 'cant', 'cause', 'causes', 'certain', 'certainly', 'changes', 'clearly', 'co', 'com', 'come', 'comes', 'concerning', 'consequently', 'consider', 'considering', 'contain', 'containing', 'contains', 'corresponding', 'could', &quot;couldn't&quot;, 'course', 'currently', 'd', 'definitely', 'described', 'despite', 'did', &quot;didn't&quot;, 'different', 'do', 'does', &quot;doesn't&quot;, 'doing', &quot;don't&quot;, 'done', 'down', 'downwards', 'during', 'e', 'each', 'with', 'within', 'without', &quot;won't&quot;, 'wonder', 'would', 'would', &quot;wouldn't&quot;, 'x', 'y', 'yes', 'yet', 'you', &quot;you'd&quot;, &quot;you'll&quot;, &quot;you're&quot;, &quot;you've&quot;, 'your', 'yours', 'yourself', 'yourselves', 'z', 'zero']
+<pre><code>    ['a', &quot;a's&quot;, 'able', 'about', 'above', 'according', 'accordingly', 'across', 'actually', 'after', 'afterwards', 'again', 'against', &quot;ain't&quot;, 'all', 'allow', 'allows', 'almost', 'alone', 'along', 'already', 'also', 'although', 'always', 'am', 'among', 'amongst', 'an', 'and', 'another', 'any', 'anybody', 'anyhow', 'anyone', 'anything', 'anyway', 'anyways', 'anywhere', 'apart', 'appear', 'appreciate', 'appropriate', 'are', &quot;aren't&quot;, 'around', 'as', 'aside', 'ask', 'asking', 'associated', 'at', 'available', 'away', 'awfully', 'b', 'be', 'became', 'because', 'become', 'becomes', 'becoming', 'been', 'before', 'beforehand', 'behind', 'being', 'believe', 'below', 'beside', 'besides', 'best', 'better', 'between', 'beyond', 'both', 'brief', 'but', 'by', 'c', &quot;c'mon&quot;, &quot;c's&quot;, 'came', 'can', &quot;can't&quot;, 'cannot', 'cant', 'cause', 'causes', 'certain', 'certainly', 'changes', 'clearly', 'co', 'com', 'come', 'comes', 'concerning', 'consequently', 'consider', 'considering', 'contain', 'containing', 'contains', 'corresponding', 'could', &quot;couldn't&quot;, 'course', 'currently', 'd', 'definitely', 'described', 'despite', 'did', &quot;didn't&quot;, 'different', 'do', 'does', &quot;doesn't&quot;, 'doing', &quot;don't&quot;, 'done', 'down', 'downwards', 'during', 'e', 'each', 'edu', 'eg', 'eight', 'either', 'else', 'elsewhere', 'enough', 'entirely', 'especially', 'et', 'etc', 'even', 'ever', 'every', 'everybody', 'everyone', 'everything', 'everywhere', 'ex', 'exactly', 'example', 'except', 'f', 'far', 'few', 'fifth', 'first', 'five', 'followed', 'following', 'follows', 'for', 'former', 'formerly', 'forth', 'four', 'from', 'further', 'furthermore', 'g', 'get', 'gets', 'getting', 'given', 'gives', 'go', 'goes', 'going', 'gone', 'got', 'gotten', 'greetings', 'h', 'had', &quot;hadn't&quot;, 'happens', 'hardly', 'has', &quot;hasn't&quot;, 'have', &quot;haven't&quot;, 'having', 'he', &quot;he's&quot;, 'hello', 'help', 'hence', 'her', 'here', &quot;here's&quot;, 'hereafter', 'hereby', 'herein', 'hereupon', 'hers', 'herself', 'hi', 'him', 'himself', 'his', 'hither', 'hopefully', 'how', 'howbeit', 'however', 'i', &quot;i'd&quot;, &quot;i'll&quot;, &quot;i'm&quot;, &quot;i've&quot;, 'ie', 'if', 'ignored', 'immediate', 'in', 'inasmuch', 'inc', 'indeed', 'indicate', 'indicated', 'indicates', 'inner', 'insofar', 'instead', 'into', 'inward', 'is', &quot;isn't&quot;, 'it', &quot;it'd&quot;, &quot;it'll&quot;, &quot;it's&quot;, 'its', 'itself', 'j', 'just', 'k', 'keep', 'keeps', 'kept', 'know', 'knows', 'known', 'l', 'last', 'lately', 'later', 'latter', 'latterly', 'least', 'less', 'lest', 'let', &quot;let's&quot;, 'like', 'liked', 'likely', 'little', 'look', 'looking', 'looks', 'ltd', 'm', 'mainly', 'many', 'may', 'maybe', 'me', 'mean', 'meanwhile', 'merely', 'might', 'more', 'moreover', 'most', 'mostly', 'much', 'must', 'my', 'myself', 'n', 'name', 'namely', 'nd', 'near', 'nearly', 'necessary', 'need', 'needs', 'neither', 'never', 'nevertheless', 'new', 'next', 'nine', 'no', 'nobody', 'non', 'none', 'noone', 'nor', 'normally', 'not', 'nothing', 'novel', 'now', 'nowhere', 'o', 'obviously', 'of', 'off', 'often', 'oh', 'ok', 'okay', 'old', 'on', 'once', 'one', 'ones', 'only', 'onto', 'or', 'other', 'others', 'otherwise', 'ought', 'our', 'ours', 'ourselves', 'out', 'outside', 'over', 'overall', 'own', 'p', 'particular', 'particularly', 'per', 'perhaps', 'placed', 'please', 'plus', 'possible', 'presumably', 'probably', 'provides', 'q', 'que', 'quite', 'qv', 'r', 'rather', 'rd', 're', 'really', 'reasonably', 'regarding', 'regardless', 'regards', 'relatively', 'respectively', 'right', 's', 'said', 'same', 'saw', 'say', 'saying', 'says', 'second', 'secondly', 'see', 'seeing', 'seem', 'seemed', 'seeming', 'seems', 'seen', 'self', 'selves', 'sensible', 'sent', 'serious', 'seriously', 'seven', 'several', 'shall', 'she', 'should', &quot;shouldn't&quot;, 'since', 'six', 'so', 'some', 'somebody', 'somehow', 'someone', 'something', 'sometime', 'sometimes', 'somewhat', 'somewhere', 'soon', 'sorry', 'specified', 'specify', 'specifying', 'still', 'sub', 'such', 'sup', 'sure', 't', &quot;t's&quot;, 'take', 'taken', 'tell', 'tends', 'th', 'than', 'thank', 'thanks', 'thanx', 'that', &quot;that's&quot;, 'thats', 'the', 'their', 'theirs', 'them', 'themselves', 'then', 'thence', 'there', &quot;there's&quot;, 'thereafter', 'thereby', 'therefore', 'therein', 'theres', 'thereupon', 'these', 'they', &quot;they'd&quot;, &quot;they'll&quot;, &quot;they're&quot;, &quot;they've&quot;, 'think', 'third', 'this', 'thorough', 'thoroughly', 'those', 'though', 'three', 'through', 'throughout', 'thru', 'thus', 'to', 'together', 'too', 'took', 'toward', 'towards', 'tried', 'tries', 'truly', 'try', 'trying', 'twice', 'two', 'u', 'un', 'under', 'unfortunately', 'unless', 'unlikely', 'until', 'unto', 'up', 'upon', 'us', 'use', 'used', 'useful', 'uses', 'using', 'usually', 'uucp', 'v', 'value', 'various', 'very', 'via', 'viz', 'vs', 'w', 'want', 'wants', 'was', &quot;wasn't&quot;, 'way', 'we', &quot;we'd&quot;, &quot;we'll&quot;, &quot;we're&quot;, &quot;we've&quot;, 'welcome', 'well', 'went', 'were', &quot;weren't&quot;, 'what', &quot;what's&quot;, 'whatever', 'when', 'whence', 'whenever', 'where', &quot;where's&quot;, 'whereafter', 'whereas', 'whereby', 'wherein', 'whereupon', 'wherever', 'whether', 'which', 'while', 'whither', 'who', &quot;who's&quot;, 'whoever', 'whole', 'whom', 'whose', 'why', 'will', 'willing', 'wish', 'with', 'within', 'without', &quot;won't&quot;, 'wonder', 'would', 'would', &quot;wouldn't&quot;, 'x', 'y', 'yes', 'yet', 'you', &quot;you'd&quot;, &quot;you'll&quot;, &quot;you're&quot;, &quot;you've&quot;, 'your', 'yours', 'yourself', 'yourselves', 'z', 'zero']
 </code></pre>
+
+<p>Remove the stopwords from the article text word list.</p>
 
 <pre><code class="language-python"># Remove the stopwords
 words_new = [word for word in words if word not in stop_list]
 </code></pre>
 
+<p>Take a look at words from the article text that are retained. (Note: Some punctuation marks still remain. Text could be further cleaned.)</p>
+
 <pre><code class="language-python">print (words_new)
 </code></pre>
 
-<pre><code>['(', 'cnn', ')', 'year', 'trump', 'administration', &quot;'&quot;, '&quot;', '-', 'tolerance', '&quot;', 'policy', 'resulted', '2', ',', '300', 'children', 'separated', 'families', 'border', 'mere', '-', 'week', 'period', ',', 'ninth', '-', 'grader', 'mcallen', ',', 'texas', ',', 'mother', '.', 'riding', 'car', 'friends', 'spring', 'car', 'pulled', '.', 'teenager', ',', 'brought', 'illegally', 'country', 'mother', 'baby', ',', 'unable', 'show', 'identification', '.', 'police', 'called', 'immigration', 'officials', ',', 'arrested', 'boy', 'shelter', 'unaccompanied', 'migrant', 'children', '.', 'john', 'doe', '2', ',', 'referred', 'current', 'legal', 'filings', 'challenging', 'detainment', ',', 'thousands', 'caught', 'network', 'shelters', 'higher', '-', 'security', 'facilities', 'house', 'undocumented', 'minors', ',', 'gaining', 'attention', 'newly', 'separated', 'children', 'streaming', '.', 'immigration', 'attorneys', 'working', 'directly', 'migrant', 'children', 'facilities', 'provide', 'care', ',', 'circumstances', '.', 'huge', 'shelter', 'brownsville', ',', 'texas', ',', 'opened', 'doors', 'media', 'tour', 'week', ',', 'appeared', 'clean', '-', 'staffed', 'time', '.', 'john', 'doe', '2', 'landed', 'troubled', 'corner', 'system', ',', '-', 'person', 'sworn', 'declaration', 'current', 'legal', 'motion', 'federal', 'government', 'unlawful', 'inappropriate', 'detainment', 'children', '.', 'account', 'dozens', 'describing', 'overloaded', 'secretive', 'shelters', ',', 'treatment', 'ensured', 'lifelong', 'damage', 'children', '.&quot;', 'share', 'facilities', 'holding', 'migrant', 'children', '?', 'email', ':', 'watchdog', '@', 'cnn', '.', '.']
+<pre><code>    ['america', 'buy', 'fiat', '.', 'fiat', &quot;'&quot;, 'sales', '44', '%', 'year', '.', 'brand', 'sold', 'cars', '2018', 'months', '2014', ',', 'fiat', &quot;'&quot;, 'recent', 'high', '-', 'water', 'mark', '.', 'americans', 'bought', 'alfa', 'romeos', 'fiats', 'year', '.', '&quot;', 'sales', 'brand', ',&quot;', 'rebecca', 'lindland', ',', 'analyst', 'cox', 'automotive', '.', 'company', 'sells', 'models', 'america', ':', 'fiat', '500', ',', '500l', '500x', ',', 'vehicles', ',', 'spider', '.', 'subcompact', 'cars', ',', 'falling', 'favor', 'american', 'customers', '.', 'sales', 'fall', ',', 'fiat', 'chrysler', '(', 'fcau', ')', 'pulled', 'spending', 'small', 'car', 'brand', '.', 'company', 'made', 'clear', 'emphasize', 'trucks', 'suvs', 'sedans', 'forward', '.', 'fiat', ',', 'dodge', 'chrysler', 'brands', 'collectively', 'slated', 'receive', '25', '%', 'company', &quot;'&quot;, 'investment', 'spending', '--', 'lion', &quot;'&quot;, 'share', 'ram', 'jeep', '.', 'related', ':', 'things', 'don', &quot;'&quot;, 'good', 'dodge', 'chrysler', '&quot;', 'making', 'money', 'cars', ',', 'small', ',', 'cheap', 'cars', ',&quot;', 'michelle', 'krebs', ',', 'analyst', 'autotrader', '.', 'fiat', 'face', 'additional', 'hurdle', ':', 'trump', 'administration', &quot;'&quot;, 'threat', 'impose', 'tariffs', 'imported', 'cars', ',', 'europe', '.', 'significantly', 'raise', 'price', 'fiats', '--', 'potentially', 'final', 'straw', 'automaker', 'moving', 'direction', '.', 'related', ':', '-', 'made', 'car', 'import', '.', &quot;'&quot;, 'bad', 'news', 'automakers', 'fiat', 'rescued', 'chrysler', 'bankruptcy', '2009', '.', 'italian', 'brand', 'returned', 'market', 'years', ',', '-', 'decade', 'absence', '.', 'brand', 'united', 'states', '.', ',', 'demand', 'commitment', 'company', ',', 'dealers', 'don', &quot;'&quot;, 'continue', 'giving', 'resources', 'floor', 'space', 'selling', 'fiats', '.', '&quot;', &quot;'&quot;, 'demand', 'cars', &quot;'&quot;, 'profit', ',', 'dealers', ',&quot;', 'krebs', '.', 'dealers', 'paid', 'dealership', 'rights', ',', 'made', 'investments', 'sell', 'brand', '.', 'company', &quot;'&quot;, 'decision', 'kill', 'fiat', 'brand', 'united', 'states', 'dealership', 'math', '.', '&quot;', 'depend', 'buy', ',&quot;', 'lindland', '.', '&quot;', &quot;'&quot;, 'sitting', 'dealer', ',', &quot;'&quot;, 'll', 'sort', 'reparations', '.&quot;', '13', 'american', 'dealerships', 'sell', 'fiat', 'fiat', 'chrysler', 'brand', '.', 'fiat', &quot;'&quot;, '400', 'dealerships', 'sell', 'chryslers', ',', 'dodges', ',', 'jeeps', 'rams', '.', '100', 'sell', 'alfa', 'romeos', '.']
 </code></pre>
+
+<h3 id="load-the-loughranmcdonald-master-word-list-into-a-pandas-dataframe-the-dataframe-has-the-following-columns">Load the LoughranMcDonald master word list into a pandas dataframe. The dataframe has the following columns:</h3>
+
+<p>Word, Sequence Number, Word Count, Word Proportion, Average Proportion, Std Dev, Doc Count, Negative, Positive,    Uncertainty, Litigious, Constraining, Superfluous, Interesting, Modal, Irr_Verb, Harvard_IV, Syllables, Source.</p>
+
+<p>We will collect words whose  &lsquo;Positive&rsquo; or &lsquo;Negative&rsquo; values are greater than 0 into two separate lists and convert words in those lists into lowercase.</p>
 
 <pre><code class="language-python">#Load master dictionary
-master = pd.read_csv(&quot;LoughranMcDonald_MasterDictionary_2016.csv&quot;)
-</code></pre>
+master = pd.read_csv(&quot;https://drive.google.com/file/d/0B4niqV00F3msaFZGUEZNTGtBblU/view?usp=sharing&quot;)
 
-<pre><code class="language-python">master.head()
-</code></pre>
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Word</th>
-      <th>Sequence Number</th>
-      <th>Word Count</th>
-      <th>Word Proportion</th>
-      <th>Average Proportion</th>
-      <th>Std Dev</th>
-      <th>Doc Count</th>
-      <th>Negative</th>
-      <th>Positive</th>
-      <th>Uncertainty</th>
-      <th>Litigious</th>
-      <th>Constraining</th>
-      <th>Superfluous</th>
-      <th>Interesting</th>
-      <th>Modal</th>
-      <th>Irr_Verb</th>
-      <th>Harvard_IV</th>
-      <th>Syllables</th>
-      <th>Source</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>AARDVARK</td>
-      <td>1</td>
-      <td>275</td>
-      <td>1.603442e-08</td>
-      <td>1.306189e-08</td>
-      <td>3.665256e-06</td>
-      <td>82</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>2</td>
-      <td>12of12inf</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>AARDVARKS</td>
-      <td>2</td>
-      <td>3</td>
-      <td>1.749209e-10</td>
-      <td>1.028197e-11</td>
-      <td>1.014208e-08</td>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>2</td>
-      <td>12of12inf</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>ABACI</td>
-      <td>3</td>
-      <td>8</td>
-      <td>4.664558e-10</td>
-      <td>1.465871e-10</td>
-      <td>6.401309e-08</td>
-      <td>7</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>3</td>
-      <td>12of12inf</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>ABACK</td>
-      <td>4</td>
-      <td>6</td>
-      <td>3.498419e-10</td>
-      <td>1.758203e-10</td>
-      <td>7.213526e-08</td>
-      <td>6</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>2</td>
-      <td>12of12inf</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>ABACUS</td>
-      <td>5</td>
-      <td>6729</td>
-      <td>3.923477e-07</td>
-      <td>3.752169e-07</td>
-      <td>3.452425e-05</td>
-      <td>845</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>3</td>
-      <td>12of12inf</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-<pre><code class="language-python">positive = master[master[&quot;Positive&quot;]&gt;0]
+positive = master[master[&quot;Positive&quot;]&gt;0]
 negative = master[master[&quot;Negative&quot;]&gt;0]
-</code></pre>
 
-<pre><code class="language-python">pos_words = positive[&quot;Word&quot;].tolist()
+pos_words = positive[&quot;Word&quot;].tolist()
 neg_words = negative[&quot;Word&quot;].tolist()
-</code></pre>
 
-<pre><code class="language-python">print(pos_words)
-</code></pre>
-
-<pre><code>['ABLE', 'ABUNDANCE', 'ABUNDANT', 'ACCLAIMED', 'ACCOMPLISH', 'ACCOMPLISHED', 'ACCOMPLISHES', 'ACCOMPLISHING', 'ACCOMPLISHMENT', 'ACCOMPLISHMENTS', 'ACHIEVE', 'ACHIEVED', 'ACHIEVEMENT', 'ACHIEVEMENTS', 'ACHIEVES', 'ACHIEVING', 'ADEQUATELY', 'ADVANCEMENT', 'ADVANCEMENTS', 'ADVANCES', 'ADVANCING', 'ADVANTAGE', 'ADVANTAGED', 'ADVANTAGEOUS', 'ADVANTAGEOUSLY', 'ADVANTAGES', 'ALLIANCE', 'ALLIANCES', 'ASSURE', 'ASSURED', 'ASSURES', 'ASSURING', 'ATTAIN', 'ATTAINED', 'ATTAINING', 'ATTAINMENT', 'ATTAINMENTS', 'ATTAINS', 'ATTRACTIVE', 'ATTRACTIVENESS', 'BEAUTIFUL', 'BEAUTIFULLY', 'BENEFICIAL', 'BENEFICIALLY', 'BENEFIT', 'BENEFITED', 'BENEFITING', 'BENEFITTED', 'BENEFITTING', 'BEST', 'BETTER', 'BOLSTERED', 'BOLSTERING', 'BOLSTERS', 'BOOM', 'BOOMING', 'BOOST', 'BOOSTED', 'BREAKTHROUGH', 'BREAKTHROUGHS', 'BRILLIANT', 'CHARITABLE', 'COLLABORATE', 'COLLABORATED', 'COLLABORATES', 'COLLABORATING', 'COLLABORATION', 'COLLABORATIONS', 'COLLABORATIVE', 'COLLABORATOR', 'COLLABORATORS', 'COMPLIMENT', 'COMPLIMENTARY', 'COMPLIMENTED', 'COMPLIMENTING', 'COMPLIMENTS', 'CONCLUSIVE', 'CONCLUSIVELY', 'CONDUCIVE', 'CONFIDENT', 'CONSTRUCTIVE', 'CONSTRUCTIVELY', 'COURTEOUS', 'CREATIVE', 'CREATIVELY', 'CREATIVENESS', 'CREATIVITY', 'DELIGHT', 'DELIGHTED', 'DELIGHTFUL', 'DELIGHTFULLY', 'DELIGHTING', 'DELIGHTS', 'DEPENDABILITY', 'DEPENDABLE', 'DESIRABLE', 'DESIRED', 'DESPITE', 'DESTINED', 'DILIGENT', 'DILIGENTLY', 'DISTINCTION', 'DISTINCTIONS', 'DISTINCTIVE', 'DISTINCTIVELY', 'DISTINCTIVENESS', 'DREAM', 'EASIER', 'EASILY', 'EASY', 'EFFECTIVE', 'EFFICIENCIES', 'EFFICIENCY', 'UNSURPASSED', 'UPTURN', 'UPTURNS', 'VALUABLE', 'VERSATILE', 'VERSATILITY', 'VIBRANCY', 'VIBRANT', 'WIN', 'WINNER', 'WINNERS', 'WINNING', 'WORTHY']
-</code></pre>
-
-<pre><code class="language-python">print(neg_words)
-</code></pre>
-
-<pre><code>['ABANDON', 'ABANDONED', 'ABANDONING', 'ABANDONMENT', 'ABANDONMENTS', 'ABANDONS', 'ABDICATED', 'ABDICATES', 'ABDICATING', 'ABDICATION', 'ABDICATIONS', 'ABERRANT', 'ABERRATION', 'ABERRATIONAL', 'ABERRATIONS', 'ABETTING', 'ABNORMAL', 'ABNORMALITIES', 'ABNORMALITY', 'ABNORMALLY', 'ABOLISH', 'ABOLISHED', 'ABOLISHES', 'ABOLISHING', 'ABROGATE', 'ABROGATED', 'ABROGATES', 'ABROGATING', 'ABROGATION', 'ABROGATIONS', 'ABRUPT', 'ABRUPTLY', 'ABRUPTNESS', 'ABSENCE', 'ABSENCES', 'ABSENTEEISM', 'ABUSE', 'ABUSED', 'ABUSES', 'ABUSING', 'ABUSIVE', 'ABUSIVELY', 'ABUSIVENESS', 'ACCIDENT', 'ACCIDENTAL', 'ACCIDENTALLY', 'ACCIDENTS', 'ACCUSATION', 'ACCUSATIONS', 'ACCUSE', 'ACCUSED', 'ACCUSES', 'ACCUSING', 'ACQUIESCE', 'ACQUIESCED', 'ACQUIESCES', 'ACQUIESCING', 'ACQUIT', 'ACQUITS', 'ACQUITTAL', 'ACQUITTALS', 'ACQUITTED', 'ACQUITTING', 'ADULTERATE', 'ADULTERATED', 'ADULTERATING', 'ADULTERATION', 'ADULTERATIONS', 'ADVERSARIAL', 'ADVERSARIES', 'ADVERSARY', 'ADVERSE', 'ADVERSELY', 'ADVERSITIES', 'ADVERSITY', 'AFTERMATH', 'AFTERMATHS', 'AGAINST', 'AGGRAVATE', 'AGGRAVATED', 'AGGRAVATES', 'AGGRAVATING', 'AGGRAVATION', 'AGGRAVATIONS', 'ALERTED', 'ALERTING', 'ALIENATE', 'ALIENATED', 'ALIENATES', 'ALIENATING', 'ALIENATION', 'ALIENATIONS', 'ALLEGATION', 'ALLEGATIONS', 'ALLEGE', 'ALLEGED', 'ALLEGEDLY', 'ALLEGES', 'ALLEGING', 'ANNOY', 'ANNOYANCE', 'ANNOYANCES', 'ANNOYED', 'ANNOYING', 'ANNOYS', 'ANNUL', 'ANNULLED', 'ANNULLING', 'ANNULMENT', 'ANNULMENTS', 'ANNULS', 'ANOMALIES', 'ANOMALOUS', 'ANOMALOUSLY', 'ANOMALY', 'ANTICOMPETITIVE', 'ANTITRUST', 'ARGUE', 'ARGUED', 'ARGUING', 'ARGUMENT', 'ARGUMENTATIVE', 'ARGUMENTS', 'ARREARAGE', 'ARREARAGES', 'ARREARS', 'ARREST', 'ARRESTED', 'ARRESTS', 'ARTIFICIALLY', 'ASSAULT', 'ASSAULTED', 'ASSAULTING', 'ASSAULTS', 'ASSERTIONS', 'ATTRITION', 'AVERSELY', 'BACKDATING', 'BAD', 'BAIL', 'BAILOUT', 'BALK', 'BALKED', 'BANKRUPT', 'BANKRUPTCIES', 'BANKRUPTCY', 'BANKRUPTED', 'BANKRUPTING', 'BANKRUPTS', 'BANS', 'BARRED', 'BARRIER', 'BARRIERS', 'BOTTLENECK', 'BOTTLENECKS', 'BOYCOTT', 'BOYCOTTED', 'BOYCOTTING', 'WEAKNESSES', 'WILLFULLY', 'WORRIES', 'WORRY', 'WORRYING', 'WORSE', 'WORSEN', 'WORSENED', 'WORSENING', 'WORSENS', 'WORST', 'WORTHLESS', 'WRITEDOWN', 'WRITEDOWNS', 'WRITEOFF', 'WRITEOFFS', 'WRONG', 'WRONGDOING', 'WRONGDOINGS', 'WRONGFUL', 'WRONGFULLY', 'WRONGLY']
-</code></pre>
-
-<pre><code class="language-python">pos_words = [word.lower() for word in pos_words]
+pos_words = [word.lower() for word in pos_words]
 neg_words = [word.lower() for word in neg_words]
 </code></pre>
 
+<h3 id="retain-only-the-positive-words-and-negative-words-from-the-article-text-and-print-the-count-of-each">Retain only the &lsquo;positive&rsquo; words and &lsquo;negative&rsquo; words from the article text and print the count of each.</h3>
+
 <pre><code class="language-python">words_new_pos = [word for word in words_new if word in pos_words]
 words_new_neg = [word for word in words_new if word in neg_words]
+
+print(&quot;Positive Score: &quot;,len(words_new_pos),&quot;Negative Score: &quot;,len(words_new_neg))
 </code></pre>
 
-<pre><code class="language-python">print(&quot;Positive Score: &quot;,len(words_new_pos),&quot;Negative Score: &quot;,len(words_new_neg))
+<pre><code>    Positive Score:  1 Negative Score:  5
 </code></pre>
 
-<pre><code>Positive Score:  7 Negative Score:  220
-</code></pre>
+<p>The above scores indicate that the article has a negative sentiment.</p>
 
-<pre><code class="language-python">## The above scores indicate that the given news article has a negative sentiment
-</code></pre>
+<h3 id="improving-the-sentiment-analyzer">Improving the sentiment analyzer.</h3>
+
+<p>The above method counts the number of positive words and negative words in the article and uses the difference in counts to indicate sentiment. The method can be improved by taking into account other collections (like constraining or uncertainity) in the master word list. Another improvement could give higher weight to &lsquo;positive&rsquo; or &lsquo;negative&rsquo; words that occur in the first section of the article.</p>
 
 	</article>
 </main>

@@ -28,7 +28,7 @@ Step 1: Download Resources and Setup Directories  Download and intall Git (https
       <pubDate>Fri, 15 Jun 2018 23:38:36 -0500</pubDate>
       
       <guid>https://joecoelhosj.github.io/tutorial/newsarticlesentiment/</guid>
-      <description>Sentiment Analysis Identifying the sentiment of a news article or tweet can be useful in many ways. For example, sentiment of news about stock or the economy might correlate to movements in the stock market. Or sentiment of tweets of an user might correlate to the mood of the user. These in turn can be used for personalizing recommendations or for predicting market sentiment. In this brief tutorial we will look at how news article sentiment can be guaged.</description>
+      <description>Sentiment Analysis Identifying the sentiment of a news article or tweet can be useful in many ways. For example, sentiment of news about stock or the economy or sentiment of tweets of a user regarding the stock market might correlate to movements in the stock market. These in turn can be used for personalizing recommendations or for predicting market sentiment. In this brief tutorial we will look at how news article sentiment can be guaged.</description>
     </item>
     
     <item>
