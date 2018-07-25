@@ -49,6 +49,11 @@
   </url>
   
   <url>
+    <loc>https://joecoelhosj.github.io/jesuitica/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://joecoelhosj.github.io/post/</loc>
     <priority>0</priority>
   </url>
