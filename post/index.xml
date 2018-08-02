@@ -1,14 +1,42 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Post on Big Data Ethics</title>
+    <title>Posts on Big Data Ethics</title>
     <link>https://joecoelhosj.github.io/post/</link>
-    <description>Recent content in Post on Big Data Ethics</description>
+    <description>Recent content in Posts on Big Data Ethics</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
+    <lastBuildDate>Tue, 31 Jul 2018 11:25:55 -0500</lastBuildDate>
     
 	<atom:link href="https://joecoelhosj.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>IEEE BigData Congress 2018</title>
+      <link>https://joecoelhosj.github.io/post/ieeebigdata2018/</link>
+      <pubDate>Tue, 31 Jul 2018 11:25:55 -0500</pubDate>
+      
+      <guid>https://joecoelhosj.github.io/post/ieeebigdata2018/</guid>
+      <description>The IEEE 2018 World Congress on Services held in San Francisco, CA during 2-7 July was a jamboree of sorts. It included the BigData Congress as well as Cloud, Edge, ICCC (Cognitive Computing), ICIOT (Internet of Things), ICWS (Web Services) and SCC (Services Computing) parallel sessions. I was privileged to present a work-in-progress paper related to personalization of travel recommendations using social media analysis in one of the BigData sessions. The basic concept of the recommendation system is to mine a user&amp;rsquo;s social media content (like twitter feed) and use that data to predict the user&amp;rsquo;s places of interest categories (like museum, parks, restaurants, buildings, etc.</description>
+    </item>
+    
+    <item>
+      <title>Privacy in a Connected World</title>
+      <link>https://joecoelhosj.github.io/post/facebook/</link>
+      <pubDate>Wed, 28 Mar 2018 09:29:21 -0500</pubDate>
+      
+      <guid>https://joecoelhosj.github.io/post/facebook/</guid>
+      <description>Facebook is in the news for all the wrong reasons these days1. And at the center of their troubles is the often discussed issue of privacy. Digital technology has evolved from being merely computing machines to connected machines. This connectednnes extends to people drawing them into discovering new ways of &amp;ldquo;staying in touch&amp;rdquo;. Face to face communication has given way in most part to online communication. Sharing of moments like photo albums and retelling of stories which were done in a specific place with real people around are now done in a virtual space with multiple copies floating around, posted and shared.</description>
+    </item>
+    
+    <item>
+      <title>Tech and Evolution</title>
+      <link>https://joecoelhosj.github.io/post/welcome/</link>
+      <pubDate>Fri, 27 Oct 2017 23:29:21 -0500</pubDate>
+      
+      <guid>https://joecoelhosj.github.io/post/welcome/</guid>
+      <description>Technology is directing the evolution of human beings. Digital devices like smartphones have become an extension of the human body. People rely a lot on such tools not just for information but as a supplement to their memory and even intelligence. Could such dependency result in decreased use of the brain and thereby result in lowered brain &amp;ldquo;capacity&amp;rdquo; over generations? Of course, there are those involved in making this technology possible?</description>
+    </item>
     
   </channel>
 </rss>
