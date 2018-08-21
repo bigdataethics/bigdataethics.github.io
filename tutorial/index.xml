@@ -6,10 +6,22 @@
     <description>Recent content in Tutorials on Big Data Ethics</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 24 Jun 2018 16:59:11 -0500</lastBuildDate>
+    <lastBuildDate>Tue, 21 Aug 2018 10:00:00 -0500</lastBuildDate>
     
 	<atom:link href="https://joecoelhosj.github.io/tutorial/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Dataset Repository List</title>
+      <link>https://joecoelhosj.github.io/tutorial/datasets/</link>
+      <pubDate>Tue, 21 Aug 2018 10:00:00 -0500</pubDate>
+      
+      <guid>https://joecoelhosj.github.io/tutorial/datasets/</guid>
+      <description>Data is called the new &amp;ldquo;black gold&amp;rdquo; and is being monetized through different avenues. Recommender Systems, Machine Learning operations, Data Mining, Pattern Recognition, etc. require data. Privacy concerns has limited the accessibility of user generated data. However, there are still a few places where data can be freely got for research purposes.
+Free Twitter Datasets Curated Twitter Data
+Twitter DataStream Archives
+Conference on Web and Social Media &amp;ndash; Dataset Sharing Service</description>
+    </item>
     
     <item>
       <title>Blog using Hugo on Github</title>
