@@ -6,10 +6,19 @@
     <description>Recent content in Tutorials on Big Data Ethics</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 21 Aug 2018 10:00:00 -0500</lastBuildDate>
+    <lastBuildDate>Tue, 28 Aug 2018 22:00:00 -0500</lastBuildDate>
     
 	<atom:link href="https://joecoelhosj.github.io/tutorial/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Simulation using SimPy</title>
+      <link>https://joecoelhosj.github.io/tutorial/simpy-example/</link>
+      <pubDate>Tue, 28 Aug 2018 22:00:00 -0500</pubDate>
+      
+      <guid>https://joecoelhosj.github.io/tutorial/simpy-example/</guid>
+      <description>Coffee shop scenario Coffee shops are generally a popular place to hangout. Starbucks, Colectivo, Anodyne, Stone Creek, etc. are some of the popular coffee shops in Milwaukee. It is not just the rejuvenating coffee that attracts customers but the shop ambience as well. It is common to find people reading books, working on their laptops, writing, being in deep thought, carrying on conversations, or just relaxing. But sometimes getting a cup of coffee can take a long wait.</description>
+    </item>
     
     <item>
       <title>Dataset Repository List</title>

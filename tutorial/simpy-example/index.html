@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article# website: http://ogp.me/ns/website#">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta name="description" content="Simulation of customer traffic at a coffee shop using SimPy ">
+    <meta property="og:title" content="Simulation using SimPy">
+    
+    <meta property="og:type" content="article">
+    <meta property="article:published_time" content="2018-08-28">
+    
+    <meta property="og:description" content="Simulation of customer traffic at a coffee shop using SimPy ">
+    <meta property="og:url" content="https://joecoelhosj.github.io/tutorial/simpy-example/">
+    <meta property="og:site_name" content="Big Data Ethics">
+    
+    <meta name="generator" content="Hugo 0.42.1" />
+    <title>Simulation using SimPy &middot; Big Data Ethics</title>
+    
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.7/styles/default.min.css">
+    
+    <link rel="stylesheet" href="https://joecoelhosj.github.io/css/style.css">
+    
+    <link href="https://joecoelhosj.github.io/index.xml" rel="alternate" type="application/rss+xml" title="Big Data Ethics" />
+    
+    
+    <link rel="icon" href="https://joecoelhosj.github.io/favicon.ico" />
+    
+
+    
+    
+</head>
+<body>
+
+<nav class="navbar navbar-default navbar-fixed-top visible-xs">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			
+				<a class="navbar-brand" href="https://joecoelhosj.github.io/">BIGDATA ETHICS</a>
+			
+		</div>
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav">
+				
+				
+					<li><a href="https://joecoelhosj.github.io/about">About</a></li>
+				
+					<li><a href="https://joecoelhosj.github.io/post/">Blog</a></li>
+				
+					<li><a href="https://joecoelhosj.github.io/tutorial/">Tutorials</a></li>
+				
+					<li><a href="https://joecoelhosj.github.io/jesuitica/">Jesuitica</a></li>
+				
+			</ul>
+		</div>
+	</div>
+</nav>
+<div class="container-fluid">
+	<div class="row">
+		<div id="menu" class="hidden-xs col-sm-4 col-md-3">
+	<div id="menu-content" class="vertical-align">
+		
+			<h1 class="text-center"><a href="https://joecoelhosj.github.io/">BIGDATA ETHICS</a></h1>
+		
+		
+		
+			<small class="text-center center-block">Joe Coelho</small>
+		
+		
+		
+			<img id="profile-pic" src="https://joecoelhosj.github.io//img/profile.jpg" alt="My Picture" class="img-circle center-block">
+		
+		<div id="social" class="text-center">
+			
+				<a href="https://twitter.com/joebencoelho"><i class="fa fa-twitter fa-2x"></i></a>
+			
+				<a href="https://www.linkedin.com/in/joecoelhosj/"><i class="fa fa-linkedin fa-2x"></i></a>
+			
+				<a href="https://plus.google.com/&#43;JosephCoelhoSJ"><i class="fa fa-google-plus fa-2x"></i></a>
+			
+
+			<a href="mailto:joseph.coelho@marquette.edu"><i class="fa fa-envelope-o fa-2x"></i></a>
+		</div>
+		<div id="links" class="text-center">
+			
+			
+				<a href="https://joecoelhosj.github.io/about">About</a>
+			
+				<a href="https://joecoelhosj.github.io/post/">Blog</a>
+			
+				<a href="https://joecoelhosj.github.io/tutorial/">Tutorials</a>
+			
+				<a href="https://joecoelhosj.github.io/jesuitica/">Jesuitica</a>
+			
+		</div>
+	</div>
+</div>
+
+		<div id="content" class="col-xs-12 col-sm-8 col-md-9">
+			<div class="row">
+				<div id="post" class="col-sm-offset-1 col-sm-10 col-md-10 col-lg-8">
+
+<main>
+	<header>
+		<h1>Simulation using SimPy</h1>
+	</header>
+
+	<article>
+		
+
+<h3 id="coffee-shop-scenario">Coffee shop scenario</h3>
+
+<p>Coffee shops are generally a popular place to hangout. Starbucks, Colectivo, Anodyne, Stone Creek, etc. are some of the popular coffee shops in Milwaukee. It is not just the rejuvenating coffee that attracts customers but the shop ambience as well. It is common to find people reading books, working on their laptops, writing, being in deep thought, carrying on conversations, or just relaxing. But sometimes getting a cup of coffee can take a long wait. Coffee shops try to minimize the wait time so that customers are satisfied with the service.</p>
+
+<p>In this tutorial we will simulate a simple coffee shop. The items on order are: Regular Coffee (10-15), Latte (30-45), Mocha (30-45), Cold Brew (10-20), Frappe (50-70), and Espresso (20-35). The numbers in brackets indicate how many seconds it takes to prepare the item.</p>
+
+<p>When a customer arrives they go to the cashier to place the order and make the payment. The cashier accepts payments through cash or cards. It generally takes 15 to 30 seconds to service a payment by cash and 10 to 20 seconds to service a payment by card. Once the payment is made the item is prepared by the barista. When the item is ready the customer picks up the order.</p>
+
+<p>The purpose of this simulation is to see how the number of cashiers and baristas affect the wait times of customers. We will use Python with some relevant libraries to model this simulation.</p>
+
+<h3 id="how-long-will-the-wait-be">How long will the wait be?</h3>
+
+<p>There are two wait periods in the above process. The first is the queue at the cashier and the second is the queue at the barista. The wait times at both the queues depend on the number of cashiers and baristas at work. More the number of cashiers and baristas, shorter will be the wait time. However, economic factors would stipulate that the shop could employ only a certain number of staff. This balance between number of staff and customer wait times is important for customer satisfaction as well as business viability.</p>
+
+<h3 id="getting-started">Getting started</h3>
+
+<p>Python is a popular general purpose programming language with many libraries to boot. Pandas, NumPy, SciPy, sklearn, random, matplotlib, SimPy are some of the commonly used libraries in data science. In this simulation tutorial we will use random and SciPy for generating random numbers that correspond to customer traffic, etc., and SimPy to model the simulation. Finally, we will use MatPlotLib to plot the results of the simulation.</p>
+
+<p>The <strong>random</strong> library provides functions for random number generation based on various distributions. The following are some examples:</p>
+
+<pre><code>import random
+random.seed(9876)      #sets the seed value for the random number generator
+random.random()        #returns a random value between 0 and 1
+random.uniform(a, b)   #returns a float value between a and b
+random.randint(a, b)   #returns an integer between a and b (inclusive of a and b)
+</code></pre>
+
+<p>The Random library also includes generators for triangular, Beta, Exponential, Gamma, Gaussian, Normal, Lognormal and Weibull distributions. You can read more about the random library at <a href="https://docs.python.org/3/library/random.html">https://docs.python.org/3/library/random.html</a></p>
+
+<p><strong>SciPy</strong> is a collection of mathematical algorithms and convenience functions built on the NumPy extension of Python. It also includes a Statistics module that contains a number of random number generators. SciPy documentation related to random number generation can be read at <a href="https://docs.scipy.org/doc/scipy/reference/tutorial/stats.html">https://docs.scipy.org/doc/scipy/reference/tutorial/stats.html</a></p>
+
+<p><strong>SimPy</strong> is a simulation library for Python. It is object-oriented and allows for process based discrete-event simulation. If you are using the standard Python distribution you can install SimPy using <code>pip</code> as follows:</p>
+
+<pre><code>pip install SimPy
+</code></pre>
+
+<p>SimPy models execute in an environment. Models comprise of processes which correspond to active components like customers in a shop, aircrafts in an airport, vehicles in a parking lot, etc. Processes interact with each other and the environment through events using the <code>yield</code> mechanism. Processes get suspended when they yield an event and resume the event occurs. One of the important event types is the <code>timeout</code>. Timeouts are triggered after a user-defined amount of time has passed. This allows the process to sleep or hold its state for the given time. Events make use of resources which correspond to check-out counters in a shop, runways in an airport, parking spots in a lot, etc. Resources may be finite or infinite.</p>
+
+<p>Processes request resources during an event and release them when they are done. If resources are not available when requested, the process joins a queue and waits for the next available resource. There are two other kinds of resources called level, and store. These are used when we want to keep track of quantities that are being consumed by processes during events. An example for level would be the total amount of gasoline in the gas station. Whenever vehicles fill gas, the level of gasoline decreases. This can be factored in a simulation. A store tracks the production and consumption of items of multiple types. Data generated during the simulation can be collected using a <code>monitor</code>. You can read more about SimPy at <a href="https://simpy.readthedocs.io/en/latest/index.html">https://simpy.readthedocs.io/en/latest/index.html</a></p>
+
+<p><u>Here are some of the commands that we will be using:</u></p>
+
+<ul>
+<li>Import the library: <code>import simpy</code></li>
+<li>Create the environment:  <code>env = simpy.Environment()</code></li>
+<li>Define a resource called cashier (with 2 cashiers): <code>cashier = simpy.Resource(env, 2)</code></li>
+<li>Generate a random number to indicate payment by cash or card: <code>payment_type = random.randint(1,2)</code></li>
+<li>Yield a timeout event (to prepare the coffee): <code>yield env.timeout(time_to_prepare)</code></li>
+<li>Start the process to generate customers: <code>env.process(generate_customer(env, cashier, barista))</code></li>
+</ul>
+
+<h3 id="the-simulation">The simulation</h3>
+
+<p>We begin by importing the required libraries and initializing variables and constants:</p>
+
+<pre><code class="language-python">import simpy
+import random
+import numpy
+
+NO_OF_CUSTOMERS = 20                          
+NO_OF_CASHIERS = 2
+NO_OF_BARISTAS = 3
+
+menu = {1:[&quot;Regular Coffee&quot;,10,15], 2:[&quot;Latte&quot;,30,45], 
+        3:[&quot;Mocha&quot;,30,45], 4:[&quot;Cold Brew&quot;,10,20], 5:[&quot;Frappe&quot;,50,70], 
+        6:[&quot;Espresso&quot;,20,35]}
+payment_options = {1:[&quot;Cash&quot;,15,30], 2:[&quot;Card&quot;,10,20]}
+
+payment_time_list = []     #list to hold the time taken to make payments
+order_time_list = []       #list to hold the time taken to prepare the order
+</code></pre>
+
+<p>We are simulating for 20 customers and a coffee shop with 2 cashiers and 3 baristas. <code>menu</code> contains the items that may be ordered and their preparation time ranges.  <code>payment_options</code> contains the options for making the payment and the time range it takes to process the payment.</p>
+
+<p>This simulation involves two processes. The first is a process to generate customers at a given frequency. The second process is the customer itself with two events: making a payment, and collecting the order. Making the payment involves the cashier resource and collecting the order involves the barista resource.</p>
+
+<pre><code class="language-python">def generate_customer(env, cashier, barista):
+    for i in range(NO_OF_CUSTOMERS):
+        yield env.timeout(random.randint(1,20))
+        env.process(customer(env, i, cashier, barista))
+</code></pre>
+
+<p><code>generate-customer</code> waits between 1 to 20 seconds before generating a customer.  The <code>timeout</code> event uses the <code>random.randint(1,20)</code> function call which returns a number between 1 and 20 using the uniform distribution. Once a customer is generated, the <code>customer</code> process is called. We will use other distributions to better replicate the arrival times of customers in the next tutorial.</p>
+
+<pre><code class="language-Python">def customer(env, name, cashier, barista):
+    start = env.now
+    print(&quot;%s arrived at cashier counter at %.1f&quot; % (name, start))
+    with cashier.request() as req:
+        start = env.now
+        yield req
+        menu_item = random.randint(1,6)
+        payment_type = random.randint(1,2)
+        time_to_order = random.randint(payment_options[payment_type][1],            payment_options[payment_type][2])
+        payment_name = payment_options[payment_type][0]
+        yield env.timeout(time_to_order)
+        print(&quot;&gt; &gt; &gt; %s finished paying by %s in %.1f seconds&quot; % (name, payment_name, env.now-start))
+        payment_time_list.append(env.now-start)
+    with barista.request() as req:
+        yield req
+        time_to_prepare = random.randint(menu[menu_item][1], menu[menu_item][2])
+        item_name = menu[menu_item][0]
+        yield env.timeout(time_to_prepare)
+        print(&quot;&gt;&gt; &gt;&gt; &gt;&gt; %s served %s in %.1f seconds&quot; % (name, item_name, env.now-start))
+        order_time_list.append(env.now-start)
+</code></pre>
+
+<p>The <code>customer</code> process first prints the arrival time. <code>env.now</code> returns the current time in seconds since start of the simulation. The <code>start</code> variable holds the time the customer arrived at the coffee shop. When the customer arrives, they make a request for the <code>cashier</code> resource using <code>yield req</code> (note that <code>req</code> is defined with the <code>with</code> statement). When the <code>req</code> is made available (that is, the customer reaches the cashier counter), we randomly choose an item from the menu to order and a payment type. Both these random numbers are drawn using uniform distribution.</p>
+
+<p>Based on the payment type, we randomly determine the time it takes for the customer to make the payment using the time range we set for each payment type. We <code>timeout</code> for that duration and then print how much time since arrival it took to complete making the payment.</p>
+
+<p>Next a request is made for a <code>barista</code> so that the item ordered can be prepared. When the barista is available, a <code>timeout</code> is marked while the order is prepared. This random time duration is from the uniform distribution depending on the time range of the particular item ordered. Once the item is prepared, the time taken is printed and the customer gets the item ordered.</p>
+
+<p>We then define the environment and resources. And we start the process of generating customers. The environment is run for 300 seconds.</p>
+
+<pre><code class="language-Python">env = simpy.Environment()
+cashier = simpy.Resource(env, NO_OF_CASHIERS)
+barista = simpy.Resource(env, NO_OF_BARISTAS)
+
+env.process(generate_customer(env, cashier, barista))
+env.run(until=300)
+</code></pre>
+
+<p>Finally, we print the average time it takes for customers to pay and get the order serviced.</p>
+
+<pre><code class="language-python">print(&quot;WITH %s CASHIERS and %s BARISTAS and %s CUSTOMERS...&quot; % (NO_OF_CASHIERS, NO_OF_BARISTAS, NO_OF_CUSTOMERS))
+print(&quot;It takes %.1f seconds on average to pay for the orders.&quot; % (numpy.mean(payment_time_list)))
+print(&quot;It takes %.1f seconds on average to service the orders.&quot; % (numpy.mean(order_time_list)))
+</code></pre>
+
+<p>When this above code was run five times the average payment times for 20 customers were {23.4, 26.4, 35.4, 22.5, 20.6} and the average times to prepare the item were {76.2, 97.1, 70.5, 54.7, 49.2}. So the average of the averages for payment time is 25.6 seconds and for the time to prepare the item is 69.5 seconds.</p>
+
+<p>The above code can be re-run with different values for NO_OF_CASHIERS and NO_OF_BARISTAS to see its impact on wait times.</p>
+
+<p>In the next tutorial we will explore other distributions from which we can sample random customer generation. We will also look at how we can plot the time taken for payments and order processing.</p>
+
+	</article>
+</main>
+
+<div id="bottom-nav" class="text-center center-block">
+	<a href=" https://joecoelhosj.github.io/" class="btn btn-default"><i class="fa fa-home"></i> Home</a>
+</div>
+
+
+  <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "joecoelhosj-github-io" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+  </div>
+  
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', '', 'auto');
+    ga('send', 'pageview');
+    window.baseURL = "https:\/\/joecoelhosj.github.io\/";
+  </script>
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.2/js/bootstrap.min.js"></script>
+  
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.7/highlight.min.js"></script>
+  
+  <script src="https://joecoelhosj.github.io//js/App.js"></script>
+  
+</body>
+</html>
