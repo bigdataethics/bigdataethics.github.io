@@ -183,13 +183,15 @@ menu = {1:[&quot;Regular Coffee&quot;,10,15], 2:[&quot;Latte&quot;,30,45],
         6:[&quot;Espresso&quot;,20,35]}
 payment_options = {1:[&quot;Cash&quot;,15,30], 2:[&quot;Card&quot;,10,20]}
 
-payment_time_list = []     #list to hold the time taken to make payments
-order_time_list = []       #list to hold the time taken to prepare the order
+payment_wait_time = []  #list to hold the time until a cashier is available
+payment_time = []       #list to hold the time taken to make payments
+order_wait_time = []    #list to hold te time until a barista is available
+order_time = []         #list to hold the time taken to prepare the order
 </code></pre>
 
 <p>We are simulating for 20 customers and a coffee shop with 2 cashiers and 3 baristas. <code>menu</code> is a dictionary that contains the items that may be ordered and their preparation time ranges.  <code>payment_options</code> is a dictionary that contains the options for making the payment and the time range it takes to process the payment.</p>
 
-<p>We create two lists (<code>payment_time_list</code> and <code>order_time_list</code>) to keep track of the time it takes for each customer to order and to get their order prepared.</p>
+<p>We create four lists (<code>payment_wait_time</code>,<code>payment_time</code>, <code>order_wait_time</code>, and <code>order_time</code>) to keep track of the time a customer has to wait until a cashier is available, time it takes for a customer to order, the time until a barista is available, and the time to get the order prepared.</p>
 
 <p>This simulation involves two processes. The first is a process to generate customers at a given frequency. The second process is the customer itself with two events: making a payment, and collecting the order. Making the payment involves the cashier resource and collecting the order involves the barista resource.</p>
 
@@ -202,32 +204,35 @@ order_time_list = []       #list to hold the time taken to prepare the order
 <p><code>generate-customer</code> waits between 1 to 20 seconds before generating a customer.  The <code>timeout</code> event uses the <code>random.randint(1,20)</code> function call which returns a number between 1 and 20 using the uniform distribution. Once a customer is generated, the <code>customer</code> process is called. We will use other distributions to better replicate the arrival times of customers in the next tutorial.</p>
 
 <pre><code class="language-Python">def customer(env, name, cashier, barista):
-    start = env.now
-    print(&quot;%s arrived at cashier counter at %.1f&quot; % (name, start))
+    print(&quot;Customer %s arrived at time %.1f&quot; % (name, env.now))
     with cashier.request() as req:
-        start = env.now
+        start_cq = env.now
         yield req
+        payment_wait_time.append(env.now-start_cq)
         menu_item = random.randint(1,6)
         payment_type = random.randint(1,2)
         time_to_order = random.randint(payment_options[payment_type][1],            payment_options[payment_type][2])
         payment_name = payment_options[payment_type][0]
         yield env.timeout(time_to_order)
-        print(&quot;&gt; &gt; &gt; %s finished paying by %s in %.1f seconds&quot; % (name, payment_name, env.now-start))
-        payment_time_list.append(env.now-start)
+        print(&quot;&gt; &gt; &gt; Customer %s finished paying by %s in %.1f seconds&quot; % (name, payment_name, env.now-start_cq))
+        payment_time.append(env.now-start_cq)
+        
     with barista.request() as req:
+        start_bq = env.now
         yield req
+        order_wait_time.append(env.now-start_bq)        
         time_to_prepare = random.randint(menu[menu_item][1], menu[menu_item][2])
         item_name = menu[menu_item][0]
         yield env.timeout(time_to_prepare)
-        print(&quot;&gt;&gt; &gt;&gt; &gt;&gt; %s served %s in %.1f seconds&quot; % (name, item_name, env.now-start))
-        order_time_list.append(env.now-start)
+        print(&quot;&gt;&gt; &gt;&gt; &gt;&gt; Customer %s served %s in %.1f seconds&quot; % (name, item_name, env.now-start_cq))
+        order_time.append(env.now-start_cq)
 </code></pre>
 
-<p>The <code>customer</code> process first prints the customer number and arrival time. <code>env.now</code> returns the current time in seconds since start of the simulation. The <code>start</code> variable holds the time the customer arrived at the coffee shop. When the customer arrives, they make a request for the <code>cashier</code> resource using <code>yield req</code> (note that <code>req</code> is defined with the <code>with</code> statement). When the <code>req</code> is made available (that is, the customer reaches the cashier counter), we randomly choose an item from the menu to order and a payment type. Both these random numbers are drawn using uniform distribution.</p>
+<p>The <code>customer</code> process first prints the customer number and arrival time. <code>env.now</code> returns the current time in seconds since start of the simulation. The <code>start_cq</code> variable holds the time the customer arrived at the coffee shop. When the customer arrives, they make a request for the <code>cashier</code> resource using <code>yield req</code> (note that <code>req</code> is defined with the <code>with</code> statement). When the <code>req</code> is made available (that is, the customer reaches the cashier counter), we randomly choose an item from the menu to order and a payment type. Both these random numbers are drawn using uniform distribution.</p>
 
 <p>Based on the payment type, we randomly determine the time it takes for the customer to make the payment using the time range we set for each payment type. We <code>timeout</code> for that duration and then print how much time since arrival it took to complete making the payment.</p>
 
-<p>Next a request is made for a <code>barista</code> so that the item ordered can be prepared. When the barista is available, a <code>timeout</code> is marked while the order is prepared. This random time duration is from the uniform distribution depending on the time range of the particular item ordered. Once the item is prepared, the time taken is printed and the customer gets the item ordered.</p>
+<p>Next a request is made for a <code>barista</code> and <code>start_bq</code> holds the time the customer has to wait until a barista begins preparing their order.  When the barista is available, a <code>timeout</code> is marked while the order is prepared. This random time duration is from the uniform distribution depending on the time range of the particular item ordered. Once the item is prepared, the time taken is printed and the customer gets the item ordered.</p>
 
 <p>Next we define the environment and resources and start the process of generating customers. The environment is run for 300 seconds.</p>
 
@@ -236,19 +241,204 @@ cashier = simpy.Resource(env, NO_OF_CASHIERS)
 barista = simpy.Resource(env, NO_OF_BARISTAS)
 
 env.process(generate_customer(env, cashier, barista))
-env.run(until=300)
+env.run(until=400)
 </code></pre>
 
 <p>Finally, we print the average time it takes for customers to pay and get the order serviced.</p>
 
-<pre><code class="language-python">print(&quot;WITH %s CASHIERS and %s BARISTAS and %s CUSTOMERS...&quot; % (NO_OF_CASHIERS, NO_OF_BARISTAS, NO_OF_CUSTOMERS))
-print(&quot;It takes %.1f seconds on average to pay for the orders.&quot; % (numpy.mean(payment_time_list)))
-print(&quot;It takes %.1f seconds on average to service the orders.&quot; % (numpy.mean(order_time_list)))
+<pre><code class="language-python">print(&quot;\n\nWITH %s CASHIERS and %s BARISTAS and %s SERIALLY ARRIVING CUSTOMERS...&quot; % (NO_OF_CASHIERS, NO_OF_BARISTAS, NO_OF_CUSTOMERS))
+print(&quot;Average wait time in payment queue: %.1f seconds.&quot; % (numpy.mean(payment_wait_time)))
+print(&quot;Average time until making the payment: %.1f seconds.&quot; % (numpy.mean(payment_time)))
+print(&quot;Average wait time in order queue: %.1f seconds.&quot; % (numpy.mean(order_wait_time)))
+print(&quot;Average time until order is serviced: %.1f seconds.&quot; % (numpy.mean(order_time)))
 </code></pre>
 
-<p>When this above code was run five times the average payment times for 20 customers were {23.4, 26.4, 35.4, 22.5, 20.6} and the average times to prepare the item were {76.2, 97.1, 70.5, 54.7, 49.2}. So the average of the averages for payment time is 25.6 seconds and for the time to prepare the item is 69.5 seconds. Simulations have to be run multiple times to get a better picture of the times taken.</p>
+<p><strong>The above program generates the following output:</strong></p>
 
-<p>The above code can be re-run with different values for NO_OF_CASHIERS and NO_OF_BARISTAS to see its impact on wait times.</p>
+<pre><code>Customer 0 arrived at time 12.0
+Customer 1 arrived at time 17.0
+Customer 2 arrived at time 18.0
+&gt; &gt; &gt; Customer 1 finished paying by Card in 14.0 seconds
+Customer 3 arrived at time 31.0
+&gt; &gt; &gt; Customer 0 finished paying by Cash in 21.0 seconds
+&gt; &gt; &gt; Customer 2 finished paying by Card in 24.0 seconds
+Customer 4 arrived at time 49.0
+&gt; &gt; &gt; Customer 3 finished paying by Cash in 25.0 seconds
+&gt;&gt; &gt;&gt; &gt;&gt; Customer 1 served Latte in 46.0 seconds
+Customer 5 arrived at time 63.0
+&gt; &gt; &gt; Customer 4 finished paying by Card in 15.0 seconds
+Customer 6 arrived at time 64.0
+Customer 7 arrived at time 72.0
+&gt;&gt; &gt;&gt; &gt;&gt; Customer 3 served Regular Coffee in 42.0 seconds
+&gt;&gt; &gt;&gt; &gt;&gt; Customer 0 served Mocha in 62.0 seconds
+Customer 8 arrived at time 74.0
+&gt; &gt; &gt; Customer 5 finished paying by Card in 18.0 seconds
+Customer 9 arrived at time 88.0
+&gt;&gt; &gt;&gt; &gt;&gt; Customer 4 served Cold Brew in 40.0 seconds
+&gt; &gt; &gt; Customer 6 finished paying by Cash in 29.0 seconds
+&gt;&gt; &gt;&gt; &gt;&gt; Customer 2 served Frappe in 80.0 seconds
+&gt; &gt; &gt; Customer 7 finished paying by Cash in 27.0 seconds
+&gt; &gt; &gt; Customer 8 finished paying by Card in 29.0 seconds
+Customer 10 arrived at time 105.0
+Customer 11 arrived at time 107.0
+&gt;&gt; &gt;&gt; &gt;&gt; Customer 7 served Regular Coffee in 39.0 seconds
+&gt; &gt; &gt; Customer 10 finished paying by Card in 11.0 seconds
+Customer 12 arrived at time 116.0
+&gt; &gt; &gt; Customer 9 finished paying by Card in 31.0 seconds
+&gt;&gt; &gt;&gt; &gt;&gt; Customer 6 served Mocha in 60.0 seconds
+Customer 13 arrived at time 131.0
+&gt; &gt; &gt; Customer 11 finished paying by Cash in 24.0 seconds
+&gt; &gt; &gt; Customer 12 finished paying by Card in 17.0 seconds
+&gt;&gt; &gt;&gt; &gt;&gt; Customer 5 served Frappe in 75.0 seconds
+&gt; &gt; &gt; Customer 13 finished paying by Card in 12.0 seconds
+Customer 14 arrived at time 151.0
+&gt;&gt; &gt;&gt; &gt;&gt; Customer 9 served Regular Coffee in 65.0 seconds
+&gt;&gt; &gt;&gt; &gt;&gt; Customer 10 served Espresso in 50.0 seconds
+&gt;&gt; &gt;&gt; &gt;&gt; Customer 8 served Frappe in 87.0 seconds
+Customer 15 arrived at time 163.0
+&gt;&gt; &gt;&gt; &gt;&gt; Customer 12 served Regular Coffee in 50.0 seconds
+&gt; &gt; &gt; Customer 14 finished paying by Cash in 19.0 seconds
+Customer 16 arrived at time 175.0
+Customer 17 arrived at time 178.0
+&gt; &gt; &gt; Customer 15 finished paying by Cash in 16.0 seconds
+&gt;&gt; &gt;&gt; &gt;&gt; Customer 14 served Cold Brew in 34.0 seconds
+Customer 18 arrived at time 187.0
+Customer 19 arrived at time 196.0
+&gt; &gt; &gt; Customer 16 finished paying by Cash in 23.0 seconds
+&gt; &gt; &gt; Customer 17 finished paying by Card in 21.0 seconds
+&gt;&gt; &gt;&gt; &gt;&gt; Customer 15 served Cold Brew in 41.0 seconds
+&gt; &gt; &gt; Customer 18 finished paying by Cash in 26.0 seconds
+&gt;&gt; &gt;&gt; &gt;&gt; Customer 13 served Frappe in 85.0 seconds
+&gt;&gt; &gt;&gt; &gt;&gt; Customer 11 served Frappe in 112.0 seconds
+&gt; &gt; &gt; Customer 19 finished paying by Cash in 33.0 seconds
+&gt;&gt; &gt;&gt; &gt;&gt; Customer 18 served Mocha in 65.0 seconds
+&gt;&gt; &gt;&gt; &gt;&gt; Customer 16 served Frappe in 85.0 seconds
+&gt;&gt; &gt;&gt; &gt;&gt; Customer 17 served Frappe in 88.0 seconds
+&gt;&gt; &gt;&gt; &gt;&gt; Customer 19 served Mocha in 93.0 seconds
+
+
+WITH 2 CASHIERS and 3 BARISTAS and 20 SERIALLY ARRIVING CUSTOMERS...
+Average wait time in payment queue: 4.0 seconds.
+Average time until making the payment: 21.8 seconds.
+Average wait time in order queue: 8.6 seconds.
+Average time until order is serviced: 65.0 seconds.
+</code></pre>
+
+<p>To obtain meaningful results any simulation has to be run multiple times. On running the above program ten times, the following results were obtained. <em>(all times in seconds)</em></p>
+
+<table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="right">payment_wait_time</th>
+<th align="right">payment_time</th>
+<th align="right">order_wait_time</th>
+<th align="right">order_time</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="center"><strong>0</strong></td>
+<td align="right">5.90</td>
+<td align="right">25.85</td>
+<td align="right">15.45</td>
+<td align="right">79.85</td>
+</tr>
+
+<tr>
+<td align="center"><strong>1</strong></td>
+<td align="right">16.25</td>
+<td align="right">35.80</td>
+<td align="right">16.45</td>
+<td align="right">89.50</td>
+</tr>
+
+<tr>
+<td align="center"><strong>2</strong></td>
+<td align="right">5.40</td>
+<td align="right">23.30</td>
+<td align="right">1.65</td>
+<td align="right">52.80</td>
+</tr>
+
+<tr>
+<td align="center"><strong>3</strong></td>
+<td align="right">0.85</td>
+<td align="right">19.50</td>
+<td align="right">5.70</td>
+<td align="right">58.05</td>
+</tr>
+
+<tr>
+<td align="center"><strong>4</strong></td>
+<td align="right">0.90</td>
+<td align="right">18.25</td>
+<td align="right">3.25</td>
+<td align="right">49.00</td>
+</tr>
+
+<tr>
+<td align="center"><strong>5</strong></td>
+<td align="right">1.65</td>
+<td align="right">20.50</td>
+<td align="right">4.50</td>
+<td align="right">53.10</td>
+</tr>
+
+<tr>
+<td align="center"><strong>6</strong></td>
+<td align="right">9.80</td>
+<td align="right">29.90</td>
+<td align="right">25.05</td>
+<td align="right">97.15</td>
+</tr>
+
+<tr>
+<td align="center"><strong>7</strong></td>
+<td align="right">18.30</td>
+<td align="right">38.15</td>
+<td align="right">17.20</td>
+<td align="right">85.65</td>
+</tr>
+
+<tr>
+<td align="center"><strong>8</strong></td>
+<td align="right">4.35</td>
+<td align="right">24.60</td>
+<td align="right">1.50</td>
+<td align="right">57.25</td>
+</tr>
+
+<tr>
+<td align="center"><strong>9</strong></td>
+<td align="right">4.05</td>
+<td align="right">21.75</td>
+<td align="right">8.55</td>
+<td align="right">64.95</td>
+</tr>
+</tbody>
+</table>
+
+<p><u>The averages of the above 10 runs are as follows:</u></p>
+
+<ul>
+<li>payment_wait_time = 6.75 seconds</li>
+<li>payment_time = 25.76 seconds</li>
+<li>order_wait_time = 9.93 seconds</li>
+<li>order_time = 68.73 seconds</li>
+</ul>
+
+<p>Repeating the entire above process with one additional barista (NO_OF_BARISTAS = 4) would result in the following times. As expected, there will be a shorter wait time for the order.</p>
+
+<ul>
+<li>payment_wait_time =4.43 seconds</li>
+<li>payment_time = 23.14 seconds</li>
+<li>order_wait_time = 1.26 seconds</li>
+<li>order_time = 58.89 seconds</li>
+</ul>
+
+<p>The above code can be re-run with different values for NO_OF_CASHIERS and NO_OF_BARISTAS to see its impact on wait times. If the number of customers is increased, a suitable increase should be made in the simulation run time (<code>env.run(until=xxx)</code> where <em>xxx</em> is the time in seconds) .</p>
 
 <p>In the next tutorial we will explore other distributions from which we can sample random customer generation. We will also look at how we can plot the time taken for payments and order processing.</p>
 
