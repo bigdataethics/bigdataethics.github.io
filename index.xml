@@ -6,10 +6,21 @@
     <description>Recent content on Big Data Ethics</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 28 Aug 2018 22:00:00 -0500</lastBuildDate>
+    <lastBuildDate>Fri, 26 Oct 2018 10:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://joecoelhosj.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Using Dictionaries in Python with Textual Data</title>
+      <link>https://joecoelhosj.github.io/tutorial/pythondictionary/</link>
+      <pubDate>Fri, 26 Oct 2018 10:00:00 +0000</pubDate>
+      
+      <guid>https://joecoelhosj.github.io/tutorial/pythondictionary/</guid>
+      <description>Python provides a powerful natural language processing toolkit for handling text files. The toolkit has functions for operations like tokenizing as well as parts-of-speech identification, n-gramming, etc. In addition it contains a corpora of useful datasets like &amp;lsquo;stopwords&amp;rsquo;, &amp;lsquo;synonyms&amp;rsquo;, etc.
+Natural Language ToolKit (NLTK) To install the NLTK library, run the following at the system command prompt (terminal window):
+pip install nltk  To download the NLTK Corpora, run the following statements at the Python Prompt:</description>
+    </item>
     
     <item>
       <title>Simulation using SimPy</title>
@@ -116,6 +127,17 @@ First of all you need to obtain access codes from Twitter to be able to mine Twi
       
       <guid>https://joecoelhosj.github.io/about/</guid>
       <description>I am Joseph Coelho, a graduate student in the Department of Mathematics, Statistics and Computer Science at Marquette University, Milwaukee, WI. My interests are in Database Systems, Data Science, Machine Learning, and the Ethics of Machine Learning &amp;amp; Big Data Applications.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://joecoelhosj.github.io/tutorial/regex/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://joecoelhosj.github.io/tutorial/regex/</guid>
+      <description>The Power of Regular Expressions
+Every so often there comes a need to process textual data. It could be something like splitting a sentence into words, or validating input data against a given format, or searching for patterns in a text. Regular expressions are powerful when it comes to manipulating textual data.
+Pythion comes with the regular expression library called re. To use it one would need to import it.</description>
     </item>
     
   </channel>

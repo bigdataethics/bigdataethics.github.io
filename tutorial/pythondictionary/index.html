@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article# website: http://ogp.me/ns/website#">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta name="description" content="Dictionaries in Python">
+    <meta property="og:title" content="Using Dictionaries in Python with Textual Data">
+    
+    <meta property="og:type" content="article">
+    <meta property="article:published_time" content="2018-10-26">
+    
+    <meta property="og:description" content="Dictionaries in Python">
+    <meta property="og:url" content="https://joecoelhosj.github.io/tutorial/pythondictionary/">
+    <meta property="og:site_name" content="Big Data Ethics">
+    
+    <meta name="generator" content="Hugo 0.42.1" />
+    <title>Using Dictionaries in Python with Textual Data &middot; Big Data Ethics</title>
+    
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.7/styles/default.min.css">
+    
+    <link rel="stylesheet" href="https://joecoelhosj.github.io/css/style.css">
+    
+    <link href="https://joecoelhosj.github.io/index.xml" rel="alternate" type="application/rss+xml" title="Big Data Ethics" />
+    
+    
+    <link rel="icon" href="https://joecoelhosj.github.io/favicon.ico" />
+    
+
+    
+    
+</head>
+<body>
+
+<nav class="navbar navbar-default navbar-fixed-top visible-xs">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			
+				<a class="navbar-brand" href="https://joecoelhosj.github.io/">BIGDATA ETHICS</a>
+			
+		</div>
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav">
+				
+				
+					<li><a href="https://joecoelhosj.github.io/about">About</a></li>
+				
+					<li><a href="https://joecoelhosj.github.io/post/">Blog</a></li>
+				
+					<li><a href="https://joecoelhosj.github.io/tutorial/">Tutorials</a></li>
+				
+					<li><a href="https://joecoelhosj.github.io/jesuitica/">Jesuitica</a></li>
+				
+			</ul>
+		</div>
+	</div>
+</nav>
+<div class="container-fluid">
+	<div class="row">
+		<div id="menu" class="hidden-xs col-sm-4 col-md-3">
+	<div id="menu-content" class="vertical-align">
+		
+			<h1 class="text-center"><a href="https://joecoelhosj.github.io/">BIGDATA ETHICS</a></h1>
+		
+		
+		
+			<small class="text-center center-block">Joe Coelho</small>
+		
+		
+		
+			<img id="profile-pic" src="https://joecoelhosj.github.io//img/profile.jpg" alt="My Picture" class="img-circle center-block">
+		
+		<div id="social" class="text-center">
+			
+				<a href="https://twitter.com/joebencoelho"><i class="fa fa-twitter fa-2x"></i></a>
+			
+				<a href="https://www.linkedin.com/in/joecoelhosj/"><i class="fa fa-linkedin fa-2x"></i></a>
+			
+				<a href="https://plus.google.com/&#43;JosephCoelhoSJ"><i class="fa fa-google-plus fa-2x"></i></a>
+			
+
+			<a href="mailto:joseph.coelho@marquette.edu"><i class="fa fa-envelope-o fa-2x"></i></a>
+		</div>
+		<div id="links" class="text-center">
+			
+			
+				<a href="https://joecoelhosj.github.io/about">About</a>
+			
+				<a href="https://joecoelhosj.github.io/post/">Blog</a>
+			
+				<a href="https://joecoelhosj.github.io/tutorial/">Tutorials</a>
+			
+				<a href="https://joecoelhosj.github.io/jesuitica/">Jesuitica</a>
+			
+		</div>
+	</div>
+</div>
+
+		<div id="content" class="col-xs-12 col-sm-8 col-md-9">
+			<div class="row">
+				<div id="post" class="col-sm-offset-1 col-sm-10 col-md-10 col-lg-8">
+
+<main>
+	<header>
+		<h1>Using Dictionaries in Python with Textual Data</h1>
+	</header>
+
+	<article>
+		
+
+<p>Python provides a powerful natural language processing toolkit for handling text files. The toolkit has functions for operations like tokenizing as well as parts-of-speech identification, n-gramming, etc. In addition it contains a corpora of useful datasets like &lsquo;stopwords&rsquo;, &lsquo;synonyms&rsquo;, etc.</p>
+
+<h4 id="natural-language-toolkit-nltk">Natural Language ToolKit (NLTK)</h4>
+
+<p>To <strong>install the NLTK library</strong>, run the following at the system command prompt (terminal window):</p>
+
+<pre><code>pip install nltk
+</code></pre>
+
+<p>To <strong>download the NLTK Corpora</strong>, run the following statements at the Python Prompt:</p>
+
+<pre><code class="language-python">import nltk
+nltk.download()
+</code></pre>
+
+<p>Apart from NLTK, there are other toolkits like TextBlob, StandfordNLP, spaCy, etc. that can be used for natural language processing. Many of them are built upon NLTK. You can install any of those libraries using <code>pip</code>.</p>
+
+<h4 id="basic-natural-language-processing">Basic Natural Language Processing</h4>
+
+<p>One of the basic operations to do with text is <strong>tokenizing</strong>. And two kinds of tokenizing are: sentence tokenizing and word tokenizing. Sentence tokenizing refers to splitting a paragraph into sentences; while word tokenizing refers to splitting a paragraph into words.</p>
+
+<p>The paragraph shown below is taken from the link: <a href="https://www.bbc.co.uk/bbcthree/article/d0438e75-f9fc-4a85-a5b4-ce3cc040e33d">I tried a #NoSpendChallenge for a month</a> (You will want to change the smart quotes to regular quotes.)</p>
+
+<pre><code class="language-python">paragraph = &quot;It's official: I'm a financial ostrich. Every month, I run out of money \
+and can't work out where it's all gone. When an unexpected bill lands on \
+my door mat (hello, tax return!) I'm hit with a cold panic and, even  \
+though I have one, my savings account is empty.&quot;
+</code></pre>
+
+<p>Let&rsquo;s see what sentence tokenizing and word tokenizing do with this paragraph. The tokenize functions are part of the nltk.tokenize section of nltk. Instead of importing the entire nltk we can import just the section or object we want. To import just the tokenize section use <code>import nltk.tokenize</code> (or to refer to it with a shortened name use <code>import nltk.tokenize as nt</code>). To import just the object use:</p>
+
+<pre><code>from nltk.tokenize import sent_tokenize
+</code></pre>
+
+<pre><code class="language-python">print(sent_tokenize(paragraph))
+</code></pre>
+
+<p>Notice that sent_tokenize creates a list of sentences. It performs well with regular sentences. Did it do a good job with the paragraph? If not, what was the reason?</p>
+
+<p>There are at least two ways of doing word tokenization. The first is using the object <code>word_tokenize</code> and the second is using the object <code>WordPunctTokenizer</code>. Try out this code and identify the differences between the way words are tokenized.</p>
+
+<pre><code class="language-python">from nltk.tokenize import word_tokenize, WordPunctTokenizer
+print(word_tokenize(paragraph))
+wpt = WordPunctTokenizer()
+print(wpt.tokenize(paragraph))
+</code></pre>
+
+<p>What is the difference between using <code>.split()</code> and using <code>word_tokenize</code>or <code>WordPunctTokenizer</code>? Try them out with different texts and see which one works best for the text you want to process.</p>
+
+<p>Another basic operation on text is <strong>n-gramming</strong>, that is creating a list of tuples of n-words of the text, where n can be &lsquo;bi&rsquo; (2), or &lsquo;tri&rsquo; (3), or any other number. For the  given paragraph, the list of bi-grams would be: <code>[(&quot;It's&quot;,'official'),('official',&quot;I'm&quot;),(&quot;I'm&quot;,'a'),('a','financial'),.....]</code>.</p>
+
+<p>As always, first import the object (in this case: <code>ngrams</code>). Then create a list of items to n-gram (in this case: a list of words from the given text). (Remember: for strings, the items are characters. So n-gramming a string will result in a list of n-characters as items.)</p>
+
+<pre><code class="language-python">from nltk import ngrams
+import string
+words = [word.strip(string.punctuation) for word in paragraph.split()]
+bigrams = ngrams(words, 2)
+print(list(bigrams))
+</code></pre>
+
+<p>Try n-gramming with <code>paragraph</code> instead of <code>words</code>. What happens? How can tri-grams be created? Apart from the generic <code>ngrams</code> object, NLTK also has objects called <code>bigrams</code> and <code>trigrams</code> which take only one parameter.</p>
+
+<p>Not all words in a text are equally important. Words that are most common in a language and not &ldquo;essential&rdquo; to the general meaning of the text are called <strong>stopwords</strong>. There is no standard definition of stopwords and neither is there is standard set of stopwords. Different NLP tools have their own set of stopwords. NLTK contains <code>stopwords</code> for different languages.</p>
+
+<pre><code class="language-python">from nltk.corpus import stopwords
+englishstopwords = set(stopwords.words('english'))
+</code></pre>
+
+<p>When creating dictionaries of words it might be better to ignore stopwords in the given text. But this is a matter of programmer discretion.</p>
+
+<pre><code class="language-python">newwords = [word for word in words if word not in englishstopwords]
+print(newwords)
+</code></pre>
+
+<p>Print the count of items in the lists <code>words</code> and in <code>newwords</code>. Which are words that have been removed?</p>
+
+<p>You can print the list of stopwords: <code>print(englishstopwords)</code>. Do you think more words could be added to the list?</p>
+
+<h4 id="dictionaries-in-python">Dictionaries in Python</h4>
+
+<p>Dictionaries are data structures that consist of elements, each having two components: a key, and a value. The elements are enclosed in curly braces. Elements in a dictionary are separated by commas. An empty pair of curly braces can be used to create an empty dictionary.</p>
+
+<p><code>dict = {}</code></p>
+
+<p>A dictionary can also be created with initial values.</p>
+
+<p><code>dict = {'WI' : 'Wisconsin', 'TX' : 'Texas', 'AZ' : 'Arizona', 'CA' : 'California'}</code></p>
+
+<p>Dictionaries are unordered, changeable and indexed. Unlike lists and sets, dictionaries are indexed on the keys. The value for the key &lsquo;TX&rsquo;  can be got by giving &lsquo;TX&rsquo; as the index: <code>print(dict['TX'])</code>.</p>
+
+<p>Adding another element to the dictionary is straightforward: <code>dict['IL'] = 'Illinois'</code>. If the key already exists, then the value of that key will be changed, if not, a new element will be added to the dictionary.</p>
+
+<p><u>Some methods that operate on dictionaries:</u></p>
+
+<blockquote>
+<p>Count of elements in the dictionary: <code>len(dict)</code></p>
+
+<p>Remove the element with given key: <code>dict.pop['IL']</code></p>
+
+<p>Clear the entire dictionary: <code>dict.clear()</code></p>
+
+<p>Get a list of all the values in the dictionary: <code>dict.values()</code></p>
+
+<p>Get a list o all the keys in the dictionary: <code>dict.keys()</code></p>
+
+<p>Get a list of tuples of keys and values in the dictionary: <code>dict.items()</code></p>
+</blockquote>
+
+<p>Dictionaries are iterable (over keys) using for-loops (the following code prints the key and value for each element):</p>
+
+<pre><code class="language-python">dict = {'WI' : 'Wisconsin', 'TX' : 'Texas', 'AZ' : 'Arizona', 'CA' : 'California'}
+for state in dict:
+    print(state, dict[state])
+</code></pre>
+
+<h3 id="bible-references-and-concordance">Bible References and Concordance</h3>
+
+<p>The Bible is an interesting piece of literature since it is a collection of books neatly organized into chapters and verses. This exercise uses the King James Version text of the Bible which is available at: <a href="http://www.bibletech.net/BIBLE/Misc-tools-PlainText-KJV/kjvdat.txt">http://www.bibletech.net/BIBLE/Misc-tools-PlainText-KJV/kjvdat.txt</a></p>
+
+<p>The first few lines of the file look like this. Notice how each verse is organized. Identify the components of each line (book name, chapter number, verse number, verse text). What is the delimiter used? How do each of the lines end?</p>
+
+<blockquote>
+<p>Gen|1|1| In the beginning God created the heaven and the earth.~
+Gen|1|2| And the earth was without form, and void; and darkness was upon the face of the deep. And the Spirit of God moved upon the face of the waters.~</p>
+</blockquote>
+
+<p>Our first task is to create a concordance of words in the Bible. The dictionary will have the word as key and a list of verse references as values. Example: <code>{'crete' : ['Act 27:7', 'Act 27:12', 'Act 27:13', 'Act 27:21', 'Tit 1:5']}</code>.</p>
+
+<p>First open the file. Then begin reading line by line. Take each line and split it into its components. Create a &ldquo;verse reference&rdquo; by combining the book name, chapter number, and verse number. Take the verse text sans the last character. Create a list of the words in the verse, remove stopwords, and convert the words to lowercase. (All keys in our dictionary will be in lowercase). Update the dictionary with words as keys and verse references are values.</p>
+
+<p>While adding verse references check to see whether a reference to the verse already exists for the given word. Duplicate verse references may get added if the given word occurs multiple times in the same verse.</p>
+
+<pre><code class="language-python">from nltk.corpus import stopwords
+englishstopwords = set(stopwords.words('english'))
+with open('kjvdat.txt', 'r') as infile:
+    concordance = {}
+    for line in infile:
+        items = line.split('|')
+        verse_ref = items[0]+&quot; &quot;+items[1]+&quot;:&quot;+items[2]
+        verse = items[3].strip()[0:-1]
+        words = [word.strip(string.punctuation).lower() for word in verse.split() if word.strip(string.punctuation).lower() not in englishstopwords]
+        for word in words:
+            if word in concordance:
+                if verse_ref not in concordance[word]:
+                    concordance[word] += [verse_ref]
+            else:
+                concordance[word] = [verse_ref]
+</code></pre>
+
+<p>The concordance can be tested by providing a key. <code>print(concordance['joshua'])</code>. The above print call will print the verse references for the given key (&lsquo;joshua&rsquo;). Try out other keys.</p>
+
+<p>To get the actual text for each of the verse references of the given key we have to create a dictionary with the verse references as keys and the verse texts as values. In fact, this dictionary will be useful if a person wants to get the text of any given verse.</p>
+
+<p>Add the following lines in the appropriate places in the above program.</p>
+
+<p><code>the_bible = {}</code></p>
+
+<p><code>the_bible[verse_ref] = verse</code></p>
+
+<p>Now we can get the actual verses where the given word occurs (instead of just the references).</p>
+
+<pre><code class="language-python">searchkey = input(&quot;Which word are you searching for? &quot;).lower()
+if searchkey in concordance:
+    for ref in concordance[searchkey]:
+        print(ref, the_bible[ref])
+else:
+    print(searchkey,&quot;not found in concordance.&quot;)
+</code></pre>
+
+<p>Or, the user can specify the book name, chapter and verse:</p>
+
+<pre><code class="language-python">versekey = input(&quot;Which verse do you want (Bbb cc:vv)?&quot;)
+if versekey in the_bible:
+    print(versekey, the_bible[versekey])
+else:
+    print(versekey,&quot;not found in the_bible.&quot;)
+</code></pre>
+
+<p>The <code>versekey</code> should match the verse references in our dictionary.  Any additional characters entered may result in the reference not being found.</p>
+
+<p>Dictionary keys need not be single words (as in our concordance). It could contain phrases (bi-grams, trigrams, etc.). To be able to search for two-word phrases or three-word phrases we have to create the appropriate dictionaries. In order to be able to search for two-word or three-word phrases as they appear in The Bible, we have to retain the stop words as well.</p>
+
+<p>Initialize two more dictionaries. Create bi-grams and tri-grams from the verse text. Add the bi-grams and tri-grams to the dictionary along with their verse references.</p>
+
+<pre><code class="language-python">from nltk.corpus import stopwords
+from nltk import ngrams
+englishstopwords = set(stopwords.words('english'))
+with open('kjvdat.txt', 'r') as infile:
+    concordance = {}
+    the_bible = {}
+    bg_concordance = {}
+    tg_concordance = {}    
+    for line in infile:
+        items = line.split('|')
+        verse_ref = items[0]+&quot; &quot;+items[1]+&quot;:&quot;+items[2]
+        verse = items[3].strip()[0:-1]
+        the_bible[verse_ref] = verse
+        words = [word.strip(string.punctuation).lower() for word in verse.split() if word.strip(string.punctuation).lower() not in englishstopwords]
+        ngwords = [word.strip(string.punctuation).lower() for word in verse.split()]
+        bigrams = [&quot; &quot;.join(bg) for bg in ngrams(ngwords, 2)]
+        trigrams = [&quot; &quot;.join(bg) for bg in ngrams(ngwords, 3)]
+        for word in words:
+            if word in concordance:
+                if verse_ref not in concordance[word]:
+                    concordance[word] += [verse_ref]
+            else:
+                concordance[word] = [verse_ref]
+        for bg in bigrams:
+            if bg in bg_concordance:
+                bg_concordance[bg] += [verse_ref]
+            else:
+                bg_concordance[bg] = [verse_ref]
+        for tg in trigrams:
+            if tg in tg_concordance:
+                tg_concordance[tg] += [verse_ref]
+            else:
+                tg_concordance[tg] = [verse_ref]   
+</code></pre>
+
+<p>Try out searching for two-word keys in the bg_concordance dictionary: <code>print(bg_concordance('jesus wept'))</code>. Try out other two-word keys. Search for three-word keys in the tg_concordance dictionary.</p>
+
+<p>Get user input. Count the number of words in the input text. Search in the appropriate concordance and print out the verse references and text for the given search text. If the search text has only one word look for it in the concordance. If it has two words look for it in bg_concordance. If it has three words look for it in tg_concordance. Does it make sense to create a dictionary with four-word keys? Create one if you think it will be useful.</p>
+
+<pre><code class="language-python">searchkey = input(&quot;Enter the text you are searching for: &quot;).lower()
+wordcount = len(searchkey.split())
+if wordcount == 1:
+    if searchkey in concordance:
+        for verse_ref in concordance[searchkey]:
+            print(verse_ref, the_bible[verse_ref])
+    else:
+        print(searchkey,&quot;: not found in concordance.&quot;)
+elif wordcount == 2:
+    if searchkey in bg_concordance:
+        for verse_ref in bg_concordance[searchkey]:
+            print(verse_ref, the_bible[verse_ref])
+    else:
+        print(searchkey,&quot;: not found in bg_concordance.&quot;)
+elif wordcount == 3:
+    if searchkey in tg_concordance:
+        for verse_ref in tg_concordance[searchkey]:
+            print(verse_ref, the_bible[verse_ref])
+    else:
+        print(searchkey,&quot;: not found in tg_concordance.&quot;)
+else:
+    print(len(searchkey.split()),&quot;word dictionary does not exist.&quot;)
+</code></pre>
+
+<p>Since the text of The Bible does not change, the dictionaries created will not change either. Instead of having to re-create the dictionaries each time we need to search for text, we could save the created dictionaries and load them directly when we need to use them. That is where <code>pickle</code> comes handy.</p>
+
+<p>The <code>pickle</code> module converts a python object into a byte stream that can be written to disk. Unpickling is the inverse operation whereby a byte stream is converted back into an object. These processes are also referred to as serializing and de-serializing. Pickle files are given the filename extension <code>'.pkl'</code>. Each dictionary can be saved in a separate pickle file or all the dictionaries could be saved in the same file.</p>
+
+<pre><code class="language-python">import pickle
+with open('the_bible.pkl', 'wb') as handle:
+    pickle.dump(the_bible, handle, protocol=pickle.HIGHEST_PROTOCOL)
+</code></pre>
+
+<p>To save all dictionaries in the same file create a tuple of all the dictionaries</p>
+
+<pre><code class="language-python">with open('alldicts.pkl', 'wb') as handle:
+    pickle.dump((concordance,bg_concordance,tg_concordance,the_bible), handle, protocol=pickle.HIGHEST_PROTOCOL)
+</code></pre>
+
+<p>To de-serialize (unpickle) the file, use <code>pickle.load</code>:</p>
+
+<pre><code class="language-python">with open('the_bible.pkl', 'rb') as handle:
+    the_bible = pickle.load(handle)
+</code></pre>
+
+<p>If all four dictionaries were saved in the same file, then load the pickle file into a tuple of four items.</p>
+
+<pre><code class="language-python">with open('alldicts.pkl', 'rb') as handle:
+    conc, bg_conc, tg_conc, tbib = pickle.load(handle)
+
+searchkey = input(&quot;Enter the text you are searching for: &quot;).lower()
+wordcount = len(searchkey.split())
+if wordcount == 1:
+    if searchkey in conc:
+        for verse_ref in conc[searchkey]:
+            print(verse_ref, tbib[verse_ref])
+    else:
+        print(searchkey,&quot;: not found in conc.&quot;)
+elif wordcount == 2:
+    if searchkey in bg_conc:
+        for verse_ref in bg_conc[searchkey]:
+            print(verse_ref, tbib[verse_ref])
+    else:
+        print(searchkey,&quot;: not found in bg_conc.&quot;)
+elif wordcount == 3:
+    if searchkey in tg_conc:
+        for verse_ref in tg_conc[searchkey]:
+            print(verse_ref, tbib[verse_ref])
+    else:
+        print(searchkey,&quot;: not found in tg_conc.&quot;)
+else:
+    print(len(searchkey.split()),&quot;word dictionary does not exist.&quot;)
+</code></pre>
+
+<p>In the next part of this tutorial we will do additional things like identifying word collocations as well as searching for words with similar meanings. The searches should also be filterable by book, or section (Old Testament or New Testament).</p>
+
+	</article>
+</main>
+
+<div id="bottom-nav" class="text-center center-block">
+	<a href=" https://joecoelhosj.github.io/" class="btn btn-default"><i class="fa fa-home"></i> Home</a>
+</div>
+
+
+  <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "joecoelhosj-github-io" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+  </div>
+  
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', '', 'auto');
+    ga('send', 'pageview');
+    window.baseURL = "https:\/\/joecoelhosj.github.io\/";
+  </script>
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.2/js/bootstrap.min.js"></script>
+  
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.7/highlight.min.js"></script>
+  
+  <script src="https://joecoelhosj.github.io//js/App.js"></script>
+  
+</body>
+</html>
