@@ -17,7 +17,7 @@
       <pubDate>Fri, 26 Oct 2018 10:00:00 +0000</pubDate>
       
       <guid>https://joecoelhosj.github.io/tutorial/pythondictionary/</guid>
-      <description>Python provides a powerful natural language processing toolkit for handling text files. The toolkit has functions for operations like tokenizing as well as parts-of-speech identification, n-gramming, etc. In addition it contains a corpora of useful datasets like &amp;lsquo;stopwords&amp;rsquo;, &amp;lsquo;synonyms&amp;rsquo;, etc.
+      <description>Python provides a powerful natural language processing toolkit for handling textual data. The toolkit has functions for operations like tokenizing as well as parts-of-speech identification, n-gramming, etc. In addition it contains a corpora of useful datasets like &amp;lsquo;stopwords&amp;rsquo;, &amp;lsquo;synonyms&amp;rsquo;, etc.
 Natural Language ToolKit (NLTK) To install the NLTK library, run the following at the system command prompt (terminal window):
 pip install nltk  To download the NLTK Corpora, run the following statements at the Python Prompt:</description>
     </item>
