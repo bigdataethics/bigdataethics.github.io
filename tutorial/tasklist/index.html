@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article# website: http://ogp.me/ns/website#">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta name="description" content="">
+    <meta property="og:title" content="">
+    
+    <meta property="og:type" content="article">
+    <meta property="article:published_time" content="0001-01-01">
+    
+    <meta property="og:description" content="">
+    <meta property="og:url" content="https://joecoelhosj.github.io/tutorial/tasklist/">
+    <meta property="og:site_name" content="Big Data Ethics">
+    
+    <meta name="generator" content="Hugo 0.42.1" />
+    <title> &middot; Big Data Ethics</title>
+    
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    <link rel="stylesheet" href="https://joecoelhosj.github.io/css/style.css">
+    
+    <link href="https://joecoelhosj.github.io/index.xml" rel="alternate" type="application/rss+xml" title="Big Data Ethics" />
+    
+    
+    <link rel="icon" href="https://joecoelhosj.github.io/favicon.ico" />
+    
+
+    
+    
+</head>
+<body>
+
+<nav class="navbar navbar-default navbar-fixed-top visible-xs">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			
+				<a class="navbar-brand" href="https://joecoelhosj.github.io/">BIGDATA ETHICS</a>
+			
+		</div>
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav">
+				
+				
+					<li><a href="https://joecoelhosj.github.io/about">About</a></li>
+				
+					<li><a href="https://joecoelhosj.github.io/post/">Blog</a></li>
+				
+					<li><a href="https://joecoelhosj.github.io/tutorial/">Tutorials</a></li>
+				
+					<li><a href="https://joecoelhosj.github.io/jesuitica/">Jesuitica</a></li>
+				
+			</ul>
+		</div>
+	</div>
+</nav>
+<div class="container-fluid">
+	<div class="row">
+		<div id="menu" class="hidden-xs col-sm-4 col-md-3">
+	<div id="menu-content" class="vertical-align">
+		
+			<h1 class="text-center"><a href="https://joecoelhosj.github.io/">BIGDATA ETHICS</a></h1>
+		
+		
+		
+			<small class="text-center center-block">Joe Coelho</small>
+		
+		
+		
+			<img id="profile-pic" src="https://joecoelhosj.github.io//img/profile.jpg" alt="My Picture" class="img-circle center-block">
+		
+		<div id="social" class="text-center">
+			
+				<a href="https://twitter.com/joebencoelho"><i class="fa fa-twitter fa-2x"></i></a>
+			
+				<a href="https://www.linkedin.com/in/joecoelhosj/"><i class="fa fa-linkedin fa-2x"></i></a>
+			
+				<a href="https://plus.google.com/&#43;JosephCoelhoSJ"><i class="fa fa-google-plus fa-2x"></i></a>
+			
+
+			<a href="mailto:joseph.coelho@marquette.edu"><i class="fa fa-envelope-o fa-2x"></i></a>
+		</div>
+		<div id="links" class="text-center">
+			
+			
+				<a href="https://joecoelhosj.github.io/about">About</a>
+			
+				<a href="https://joecoelhosj.github.io/post/">Blog</a>
+			
+				<a href="https://joecoelhosj.github.io/tutorial/">Tutorials</a>
+			
+				<a href="https://joecoelhosj.github.io/jesuitica/">Jesuitica</a>
+			
+		</div>
+	</div>
+</div>
+
+		<div id="content" class="col-xs-12 col-sm-8 col-md-9">
+			<div class="row">
+				<div id="post" class="col-sm-offset-1 col-sm-10 col-md-10 col-lg-8">
+
+<main>
+	<header>
+		<h1></h1>
+	</header>
+
+	<article>
+		
+
+<h2 id="dictionaries-in-python">Dictionaries in Python</h2>
+
+<h3 id="task-list">Task List:</h3>
+
+<h4 id="preliminaries">Preliminaries:</h4>
+
+<ul>
+<li>Download the text file.</li>
+<li>The Bible is a collection of books each organized into chapters and verses.</li>
+<li>The books in The Bible are grouped under two sections: Old Testament and New Testament.</li>
+<li>Open the file in a text editor and view the file contents. See how each line is organized.</li>
+<li>Ask the user to input a word (or phrase) and print all lines in the file that contain that word (or phrase).</li>
+<li>Ask the user to input a word (or phrase) and print the verse reference that contains that word (or phrase). Verse reference will include the book, chapter and verse in the format (Bbb cc::vv).</li>
+<li>Speeding things up using dictionaries.
+
+<ul>
+<li>&ldquo;Tn the beginning when God began to create&hellip;&hellip;.&rdquo;</li>
+<li>{&lsquo;in&rsquo; : [&lsquo;Gen 1:1&rsquo;], &lsquo;the&rsquo; : [&lsquo;Gen 1:1&rsquo;], &lsquo;beginning&rsquo; : [&lsquo;Gen 1:1&rsquo;], &lsquo;when&rsquo; : [&lsquo;Gen 1:1&rsquo;], &lsquo;god&rsquo; : [&lsquo;Gen 1:1&rsquo;], &hellip;}</li>
+<li>To search for a word, just look it up in the dictionary and print the references. No need to iterate through entire file each time.</li>
+</ul></li>
+</ul>
+
+<h4 id="using-nltk">Using NLTK:</h4>
+
+<ul>
+<li>Download NLTK (pip import nltk)</li>
+<li>Download NLTK Corpora (import nltk; nltk.download())</li>
+<li>Tokenization (sent_tokenize, word_tokenize, WordPunctTokenizer)</li>
+<li>N-gramming (ngrams, bigrams, trigrams)</li>
+<li>Stopwords</li>
+</ul>
+
+<h4 id="creating-dictionaries">Creating Dictionaries:</h4>
+
+<ul>
+<li>Create a concordance of words in The Bible.</li>
+<li>Test it by asking user input and printing the verse references for that word.</li>
+<li>Create a dictionary of verse references (keys) and verse text (values).</li>
+<li>Print out verse text instead of verse references for input word.</li>
+<li>Create a dictionary of bi-grams of verse texts.</li>
+<li>Test by asking user input and printing verse text  for that input.</li>
+<li>Create a dictionary of tri-grams of verse texts.</li>
+<li>Test the tri-gram dictionary.</li>
+<li>Ask user input. Depending on the number of words in the input, search the concordance, or bi-gram dictionary, or tri-gram dictionary for matches and print the relevant verse texts.</li>
+</ul>
+
+<h4 id="pickle">Pickle</h4>
+
+<ul>
+<li><p>install pickle (pip install pickle)</p></li>
+
+<li><p>Saving the work (or sharing the work).</p></li>
+
+<li><p>Pickle the dictionary for later use. (pickle.dump)</p></li>
+
+<li><p>Unpickling the dictionary (pickle.load)</p></li>
+</ul>
+
+	</article>
+</main>
+
+<div id="bottom-nav" class="text-center center-block">
+	<a href=" https://joecoelhosj.github.io/" class="btn btn-default"><i class="fa fa-home"></i> Home</a>
+</div>
+
+
+  <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "joecoelhosj-github-io" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+  </div>
+  
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', '', 'auto');
+    ga('send', 'pageview');
+    window.baseURL = "https:\/\/joecoelhosj.github.io\/";
+  </script>
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.2/js/bootstrap.min.js"></script>
+  
+  
+  <script src="https://joecoelhosj.github.io//js/App.js"></script>
+  
+</body>
+</html>

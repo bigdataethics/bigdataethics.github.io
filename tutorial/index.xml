@@ -18,8 +18,7 @@
       
       <guid>https://joecoelhosj.github.io/tutorial/pythondictionary/</guid>
       <description>Python provides a powerful natural language processing toolkit for handling textual data. The toolkit has functions for operations like tokenizing as well as parts-of-speech identification, n-gramming, etc. In addition it contains a corpora of useful datasets like &amp;lsquo;stopwords&amp;rsquo;, &amp;lsquo;synonyms&amp;rsquo;, etc.
-Natural Language ToolKit (NLTK) To install the NLTK library, run the following at the system command prompt (terminal window):
-pip install nltk  To download the NLTK Corpora, run the following statements at the Python Prompt:</description>
+Natural Language ToolKit (NLTK) To install the NLTK library, run the following at the system command prompt (terminal window): You will have to change your current directory to the &amp;lsquo;Scripts&amp;rsquo; folder of the &amp;lsquo;Python&amp;rsquo; directory OR you should have the Python folder in the system path variable.</description>
     </item>
     
     <item>
@@ -91,6 +90,27 @@ One needs to be aware of the rate limits imposed by Twitter while accessing thei
       <guid>https://joecoelhosj.github.io/tutorial/twitter-python-1/</guid>
       <description>Social Media Analysis Social media has become the go-to place for information and opinions. Social media can be mined to gauge sentiment, analyze opinion, identity interests, locate concerns, and so on. Facebook, Pinterest, Instagram, Twitter, Google+ are some social media platforms. Among them, Twitter data is public and can be mined relatively easily.
 First of all you need to obtain access codes from Twitter to be able to mine Twitter data.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://joecoelhosj.github.io/tutorial/msaspcp-media-sentiment-augmented-stock-price-change-predictor/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://joecoelhosj.github.io/tutorial/msaspcp-media-sentiment-augmented-stock-price-change-predictor/</guid>
+      <description>MSASPCP: Media Sentiment Augmented Stock Price Change Predictor Introduction
+The stock market is a major indicator of the economy both nationally and internationally. Pricing of stocks depends on a variety of factor, the primary one being investor confidence. Being able to predict the direction of the stock enables smart investing as well as tones down the unpredictableness of the market.
+Significance
+The stock market has a big impact on oridinary people.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://joecoelhosj.github.io/tutorial/tasklist/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://joecoelhosj.github.io/tutorial/tasklist/</guid>
+      <description>Dictionaries in Python Task List: Preliminaries:  Download the text file. The Bible is a collection of books each organized into chapters and verses. The books in The Bible are grouped under two sections: Old Testament and New Testament. Open the file in a text editor and view the file contents. See how each line is organized. Ask the user to input a word (or phrase) and print all lines in the file that contain that word (or phrase).</description>
     </item>
     
     <item>
