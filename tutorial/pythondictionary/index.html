@@ -298,6 +298,8 @@ else:
 
 <p>Initialize two more dictionaries. Create bi-grams and tri-grams from the verse text. Add the bi-grams and tri-grams to the dictionary along with their verse references.</p>
 
+<p>When creating bi-grams the <code>ngrams</code> function returns a list of tuples, each tuple having two elements like this: <code>[('in', 'the'), ('the', 'beginning'), ('beginning', 'God')...]</code>. However, it would be convenient if the keys in our dictionary were just one string (of two words) rather than a tuple. The two elements of the tuple can be joined using <code>&quot; &quot;.join()</code> and putting a space between the two words.</p>
+
 <pre><code class="language-python">from nltk.corpus import stopwords
 from nltk import ngrams
 englishstopwords = set(stopwords.words('english'))
@@ -412,6 +414,8 @@ else:
 </code></pre>
 
 <p>In the next part of this tutorial we will do additional things like identifying word collocations as well as searching for words with similar meanings. The searches should also be filterable by book, or section (Old Testament or New Testament).</p>
+
+<p>While creating dictionaries of bi-grams and tri-grams the keys were strings (of two words or three words). There may be times when retaining the tuples might be more efficient - especially when we want to do word stemming.</p>
 
 <p>In addition, the library <code>tkinter</code> can be used to design a neat GUI for this search application.</p>
 
